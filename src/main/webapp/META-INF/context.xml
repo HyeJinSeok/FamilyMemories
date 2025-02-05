@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Context>
+
+  <Resource name="jdbc/fisaDB" auth="Container" type="javax.sql.DataSource"
+               maxTotal="20" maxIdle="10" maxWaitMillis="-1"
+               username="user01" password="user01" driverClassName="com.mysql.cj.jdbc.Driver"
+               url="jdbc:mysql://localhost:8888/fisa"/>
+</Context>
