@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="includes/header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,6 +10,15 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY"></script>
 </head>
 <body class="bg-gray-100 p-6" x-data="mapApp">
+	<nav class="bg-blue-500 p-4 text-white flex justify-between">
+	    <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
+	    <ul class="flex space-x-4">
+	        <li><a href="mypage.jsp" class="hover:underline">마이페이지</a></li>
+	        <li><a href="post.jsp" class="hover:underline">게시글 작성</a></li>
+	        <li><a href="recommend.jsp" class="hover:underline">추천 여행지</a></li>
+	    </ul>
+	</nav>
+
     <div class="max-w-4xl mx-auto">
         <h2 class="text-2xl font-bold mb-4">📍 여행 기록 지도</h2>
         <div id="map" class="w-full h-96 bg-gray-200"></div>
