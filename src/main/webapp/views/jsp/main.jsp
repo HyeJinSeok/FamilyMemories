@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ include file="includes/header.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,7 +6,7 @@
     <title>메인 페이지</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa4ea1c9043252a4e21db24e7aa57069&autoload=false" defer></script>
 </head>
 <body class="bg-gray-100 p-6" x-data="mapApp">
 	<nav class="bg-blue-500 p-4 text-white flex justify-between">
@@ -22,8 +21,7 @@
     <div class="max-w-4xl mx-auto">
         <h2 class="text-2xl font-bold mb-4">📍 여행 기록 지도</h2>
         <div id="map" class="w-full h-96 bg-gray-200"></div>
-
-        <!-- 모달 -->
+<!-- 
         <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" x-show="selectedPost" x-transition>
             <div class="bg-white p-6 rounded-lg shadow-lg w-96">
                 <h2 class="text-xl font-bold" x-text="selectedPost.title"></h2>
@@ -31,29 +29,35 @@
                 <button class="mt-4 bg-red-500 text-white p-2 rounded" @click="selectedPost = null">닫기</button>
             </div>
         </div>
+-->
     </div>
 
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('mapApp', () => ({
                 posts: [],
-                selectedPost: null,
+                //selectedPost: null,
 
                 init() {
-                    this.loadPosts();
+                    //this.loadPosts();
                     this.initMap();
                 },
 
                 initMap() {
+                    if (!window.kakao || !window.kakao.maps) {
+                        console.error("Kakao API가 아직 로드되지 않음. 5초 후 다시 실행...");
+                        setTimeout(() => this.initMap(), 500);
+                        return;
+                    }
+
                     kakao.maps.load(() => {
                         this.map = new kakao.maps.Map(document.getElementById('map'), {
                             center: new kakao.maps.LatLng(37.5665, 126.9780),
                             level: 7
                         });
-                        this.addMarkers();
                     });
                 },
-
+/*
                 loadPosts() {
                     fetch("getPosts.jsp")
                         .then(res => res.json())
@@ -65,17 +69,28 @@
 
                 addMarkers() {
                     if (!this.map) return;
-                    this.posts.forEach(post => {
-                        let marker = new kakao.maps.Marker({
-                            position: new kakao.maps.LatLng(post.latitude, post.longitude),
-                            map: this.map
-                        });
+                    const geocoder = new kakao.maps.services.Geocoder();
 
-                        kakao.maps.event.addListener(marker, 'click', () => {
-                            this.selectedPost = post;
+                    this.posts.forEach(post => {
+                        geocoder.addressSearch(post.address, (result, status) => {
+                            if (status === kakao.maps.services.Status.OK) {
+                                let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                                
+                                let marker = new kakao.maps.Marker({
+                                    position: coords,
+                                    map: this.map
+                                });
+
+                                kakao.maps.event.addListener(marker, 'click', () => {
+                                    this.selectedPost = post;
+                                });
+                            } else {
+                                console.warn(`❗ 주소 변환 실패: ${post.address}`);
+                            }
                         });
                     });
                 }
+                */
             }));
         });
     </script>
