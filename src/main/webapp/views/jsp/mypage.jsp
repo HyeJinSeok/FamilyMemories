@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="includes/header.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +8,15 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body class="bg-gray-100 p-6" x-data="calendarApp">
+	<nav class="bg-blue-500 p-4 text-white flex justify-between">
+	    <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
+	    <ul class="flex space-x-4">
+	        <li><a href="mypage.jsp" class="hover:underline">마이페이지</a></li>
+	        <li><a href="post.jsp" class="hover:underline">게시글 작성</a></li>
+	        <li><a href="recommend.jsp" class="hover:underline">추천 여행지</a></li>
+	    </ul>
+	</nav>
+
     <div class="max-w-4xl mx-auto">
         <h2 class="text-2xl font-bold mb-4">👨‍👩‍👧‍👦 가족 공유 캘린더</h2>
         <table class="w-full bg-white shadow-lg rounded-lg">

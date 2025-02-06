@@ -1,38 +1,62 @@
 package utils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class DBConnection {
-    private static String URL;
-    private static String USER ;
-    private static String PASSWORD;
-    private static String Driver;
-    
+    // DataSource를 클래스 레벨의 정적 멤버로 선언
+    private static DataSource ds;
+
+    // static 초기화 블록
     static {
         try {
-            Properties properties = new Properties();
-            // 설정 파일 로드
-            properties.load(new FileInputStream("????/resources/dbconfig.properties"));
-
-            URL = properties.getProperty("db.url");
-            USER = properties.getProperty("db.username");
-            PASSWORD = properties.getProperty("db.password");
-            Driver = properties.getProperty("db.driver");
-
-            // JDBC 드라이버 로드
-            Class.forName(Driver);
-        } catch (IOException | ClassNotFoundException e) {
+            Context initContext = new InitialContext();
+            Context envContext  = (Context) initContext.lookup("java:/comp/env");
+            ds = (DataSource) envContext.lookup("jdbc/fisaDB");
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("DB 로드 실패");
         }
     }
 
+    // DB 연결을 가져오는 메소드
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return ds.getConnection();
+    }
+
+    // Connection과 Statement를 닫는 메소드
+    public static void close(Connection con, Statement stmt) {
+        try {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
+    }
+
+    // Connection, Statement, ResultSet을 닫는 메소드
+    public static void close(Connection con, Statement stmt, ResultSet rset) {
+        try {
+            if (rset != null) {
+                rset.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 }
