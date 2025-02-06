@@ -16,7 +16,7 @@ public class RecommendRepository {
 		ArrayList<Recommend> all = null;
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement("select * from recommend");
+			pstmt = con.prepareStatement("select * from Recommend");
 			rs = pstmt.executeQuery();
 			
 			all = new ArrayList<>();
