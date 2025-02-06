@@ -9,6 +9,11 @@ public class PostRepository {
 
     public boolean insertPost(String title, String description, String startDate, String endDate, String location, String imgsrc, int fid) {
         Connection conn = null;
+        PreparedStatement pstmt = null;
+        
+        try {
+            conn = DBConnection.getConnection();
+            
             String sql = "INSERT INTO Post (title, description, start_date, end_date, location, imgsrc, fid) VALUES (?, ?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, title);
@@ -29,3 +34,4 @@ public class PostRepository {
         }
     }
 }
+

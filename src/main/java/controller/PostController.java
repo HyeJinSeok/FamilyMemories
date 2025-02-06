@@ -10,11 +10,10 @@ import repository.PostRepository;
 
 @WebServlet("/post")
 public class PostController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private PostRepository postRepository;
 
     public PostController() {
-
+        this.postRepository = new PostRepository();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,10 +30,6 @@ public class PostController extends HttpServlet {
         
         boolean isInserted = postRepository.insertPost(title, description, startDate, endDate, location, imgsrc, fid);
         
-        if (isInserted) {
-            response.getWriter().write("Post successfully created!");
-        } else {
-            response.getWriter().write("Failed to create post.");
-        }
+        response.sendRedirect("post.jsp?status=" + (isInserted ? "success" : "failure"));
     }
 }
