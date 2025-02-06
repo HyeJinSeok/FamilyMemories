@@ -5,7 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import repository.RecommendRepository;
+
 import java.io.IOException;
+import java.util.ArrayList;
+
+import domain.Recommend;
 
 @WebServlet("/recommend")
 public class RecommendController extends HttpServlet {
@@ -16,7 +21,13 @@ public class RecommendController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try{
+			ArrayList<Recommend> ra = RecommendRepository.getRecommend();
+			request.setAttribute("RecommendArray", ra);
+			request.getRequestDispatcher("views/jsp/recommend.jsp").forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
