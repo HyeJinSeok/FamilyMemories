@@ -24,7 +24,8 @@ public class RecommendController extends HttpServlet {
 		try{
 			ArrayList<Recommend> ra = RecommendRepository.getRecommend();
 			request.setAttribute("RecommendArray", ra);
-			request.getRequestDispatcher("views/jsp/recommend.jsp").forward(request, response);
+//			System.out.println(ra.toString());
+			request.getRequestDispatcher("/views/jsp/recommend.jsp").forward(request, response);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
