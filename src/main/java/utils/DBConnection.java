@@ -1,6 +1,9 @@
 package utils;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,4 +62,9 @@ public class DBConnection {
             s.printStackTrace();
         }
     }
+
+	public static void close(Connection conn, PreparedStatement pstmt) {
+		// TODO Auto-generated method stub
+		
+	}
 }
