@@ -2,7 +2,12 @@ package repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Post;
 import utils.DBConnection;
 
 public class PostRepository {
@@ -33,5 +38,39 @@ public class PostRepository {
             DBConnection.close(conn, pstmt);
         }
     }
+    
+	// 사용자 ID로 해당 사용자가 작성한 게시글 가져오기
+	public List<Post> getPostsByUserId(int userId) {
+		List<Post> postList = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBConnection.getConnection();
+			String sql = "SELECT * FROM Post WHERE uid = ? ORDER BY start_date DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Post post = new Post();
+				post.setPid(rs.getInt("pid"));
+				post.setTitle(rs.getString("title"));
+				post.setDescription(rs.getString("description"));
+				post.setStartDate(rs.getDate("start_date"));
+				post.setEndDate(rs.getDate("end_date"));
+				post.setLocation(rs.getString("location"));
+				post.setImgsrc(rs.getString("imgsrc"));
+				post.setFid(rs.getInt("fid"));
+				postList.add(post);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, pstmt, rs);
+		}
+		return postList;
+	}
 }
 

@@ -1,28 +1,33 @@
 package controller;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import domain.Recommend;
+import jakarta.servlet.http.HttpSession;
 import repository.PostRepository;
-import repository.RecommendRepository;
 
 @WebServlet("/post")
 public class PostController extends HttpServlet {
     private PostRepository postRepository;
 
-    public PostController() {
-        this.postRepository = new PostRepository();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        
+        
+        // 세션 가져오기
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("userId") == null || session.getAttribute("fid") == null) {
+            response.sendRedirect(request.getContextPath() + "/views/jsp/login.jsp");
+            return;
+        }
+        
+        int userId = (int) session.getAttribute("userId");
+        int fid = (int) session.getAttribute("fid");
         
         String title = request.getParameter("title");
         String description = request.getParameter("description");
@@ -30,7 +35,6 @@ public class PostController extends HttpServlet {
         String endDate = request.getParameter("end_date");
         String location = request.getParameter("location");
         String imgsrc = request.getParameter("imgsrc");
-        int fid = Integer.parseInt(request.getParameter("fid"));
         
         boolean isInserted = postRepository.insertPost(title, description, startDate, endDate, location, imgsrc, fid);
         
