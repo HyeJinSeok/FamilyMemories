@@ -42,7 +42,6 @@
             <input type="date" name="end_date" class="w-full p-2 border rounded mb-2">
             <input type="text" name="location" placeholder="위치" class="w-full p-2 border rounded mb-2">
             <input type="text" name="imgsrc" placeholder="이미지 URL" class="w-full p-2 border rounded mb-2">
-            <input type="number" name="fid" placeholder="가족 그룹 ID" class="w-full p-2 border rounded mb-2">
             
             <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-600 transition">
                 게시글 등록
