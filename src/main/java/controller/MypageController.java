@@ -1,17 +1,19 @@
 package controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import domain.Family;
+import domain.Post;
+import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
-import domain.Post;
-import domain.Family;
-import domain.User;
-import repository.PostRepository;
+import jakarta.servlet.http.HttpSession;
 import repository.FamilyRepository;
+import repository.PostRepository;
 import repository.UserRepository;
 
 @WebServlet("/mypage")
@@ -27,7 +29,16 @@ public class MypageController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 현재 로그인한 사용자의 ID 및 가족 그룹 ID 가져오기
+        // 세션 가져오기
+        HttpSession session = request.getSession(false); // 세션이 없으면 null 반환
+
+        // 세션이 없거나 userId가 설정되지 않은 경우 로그인 페이지로 리디렉트
+        if (session == null || session.getAttribute("userId") == null) {
+        	response.sendRedirect(request.getContextPath() + "/views/jsp/login.jsp"); // 로그인 페이지로 이동
+            return;
+        }
+    	
+    	// 현재 로그인한 사용자의 ID 및 가족 그룹 ID 가져오기
         int userId = (int) request.getSession().getAttribute("userId");
         int fid = (int) request.getSession().getAttribute("fid");
 
@@ -51,5 +62,12 @@ public class MypageController extends HttpServlet {
 
         // mypage.jsp로 포워딩
         request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response);
+        
+        try {
+            request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response); //
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
+    
 }
