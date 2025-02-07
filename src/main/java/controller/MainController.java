@@ -9,8 +9,10 @@ import domain.Post;
 import repository.MainRepository;
 import repository.PostRepository;
 import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/main")
 public class MainController extends HttpServlet {
@@ -26,33 +28,32 @@ public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // 전체 게시글 조회 후 JSON으로 변환하여 클라이언트에 응답
-        List<Post> postList = MainRepository.getAllPosts();
-        String postJson = new Gson().toJson(postList);
+        String type = request.getParameter("type");  // 요청 타입 확인 (전체 또는 제목)
         
-        // 응답 설정: JSON 타입, UTF-8 인코딩
-        response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write(postJson);
-    }
+        if ("titles".equals(type)) {
+            // 제목만 가져오는 경우
+            List<Post> postList = MainRepository.getAllPosts();
+            List<String> postTitles = postList.stream()
+                                              .map(Post::getTitle)
+                                              .collect(Collectors.toList());
+            String jsonResponse = new Gson().toJson(postTitles);
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        // POST 요청에서 action 파라미터에 따라 페이지 이동 처리
-        String action = request.getParameter("action");
-
-        if ("mypage".equals(action)) {
-            // 마이페이지로 리디렉션
-            response.sendRedirect("mypage.jsp");
-        } else if ("post".equals(action)) {
-            // 게시글 페이지로 리디렉션
-            response.sendRedirect("post.jsp");
-        } else if ("recommend".equals(action)) {
-            // 추천 페이지로 리디렉션
-            response.sendRedirect("recommend.jsp");
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(jsonResponse);
         } else {
-            // 기본적으로 메인 페이지로 리디렉션
-            response.sendRedirect("main.jsp");
+            // 전체 게시글 정보를 가져오는 경우
+            List<Post> postList = MainRepository.getAllPosts();
+            String jsonResponse = new Gson().toJson(postList);
+
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write(jsonResponse);
+        }
+        
+        try {
+            request.getRequestDispatcher("/views/jsp/main.jsp").forward(request, response); //
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
+
 }
