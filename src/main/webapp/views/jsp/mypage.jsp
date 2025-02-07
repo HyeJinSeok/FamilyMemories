@@ -8,17 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
-	<!-- 네비게이션 바 -->
-	<nav class="bg-blue-500 p-4 text-white flex justify-between">
-	    <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
-	    <ul class="flex space-x-4">
-	        <li><a href="mypage" class="hover:underline">마이페이지</a></li>
-	        <li><a href="post" class="hover:underline">게시글 작성</a></li>
-	        <li><a href="recommend" class="hover:underline">추천 여행지</a></li>
-	    </ul>
-	</nav>
+    <!-- 네비게이션 바 -->
+    <nav class="bg-blue-500 p-4 text-white flex justify-between">
+        <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
+        <ul class="flex space-x-4">
+            <li><a href="mypage" class="hover:underline">마이페이지</a></li>
+            <li><a href="post" class="hover:underline">게시글 작성</a></li>
+            <li><a href="recommend" class="hover:underline">추천 여행지</a></li>
+        </ul>
+    </nav>
 
-    <!-- 내가 쓴 게시물 -->
+    <!-- 📝 내가 쓴 게시물 -->
     <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-blue-600 mb-4">📝 내가 쓴 게시물</h2>
         <%
@@ -44,8 +44,7 @@
         %>
     </div>
 
-
-    <!-- 우리 가족 정보 -->
+    <!-- 🏠 우리 가족 정보 -->
     <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-blue-600 mb-4">🏠 우리 가족 정보</h2>
         <%
@@ -64,7 +63,7 @@
                     if (familyMembers != null && !familyMembers.isEmpty()) {
                         for (User user : familyMembers) {
                 %>
-                            <li class="text-gray-600">👤 <%= user.getUsername() %> (<%= user.getEmail() %>)</li>
+                            <li class="text-gray-600">👤 <%= user.getName() %> (<%= user.getEmail() %>)</li>
                 <%
                         }
                     } else {
@@ -79,7 +78,27 @@
             }
         %>
     </div>
+        <!-- 내 정보 -->
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">🙍‍♂️ 내 정보</h2>
+        <%
+            User user = (User) request.getAttribute("userInfo"); // 컨트롤러에서 전달된 내 정보
+            if (user != null) {
+        %>
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+                <p class="text-lg font-semibold">👤 이름: <%= user.getName() %></p>
+                <p class="text-gray-700">📧 이메일: <%= user.getEmail() %></p>
+            </div>
+        <%
+            } else {
+        %>
+            <p class="text-gray-600">사용자 정보를 불러올 수 없습니다.</p>
+        <%
+            }
+        %>
+    </div>
 
 </body>
 </html>
+
 
