@@ -12,14 +12,14 @@ import utils.DBConnection;
 
 public class PostRepository {
 
-    public boolean insertPost(String title, String description, String startDate, String endDate, String location, String imgsrc, int fid) {
+    public boolean insertPost(String title, String description, String startDate, String endDate, String location, String imgsrc, int fid, int uid) {
         Connection conn = null;
         PreparedStatement pstmt = null;
         
         try {
             conn = DBConnection.getConnection();
             
-            String sql = "INSERT INTO Post (title, description, start_date, end_date, location, imgsrc, fid) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Post (title, description, start_date, end_date, location, imgsrc, fid, uid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, title);
             pstmt.setString(2, description);
@@ -28,6 +28,7 @@ public class PostRepository {
             pstmt.setString(5, location);
             pstmt.setString(6, imgsrc);
             pstmt.setInt(7, fid);
+            pstmt.setInt(8, uid);
             
             int rowsInserted = pstmt.executeUpdate();
             return rowsInserted > 0;

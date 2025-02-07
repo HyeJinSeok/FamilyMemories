@@ -63,3 +63,23 @@
 
 
 ### 3. 추가적인 가족 단위의 유입을 통한 서비스 개선 및 통합 가족 서비스로 진화
+
+
+
+
+
+## Trouble Shooting
+include UTF-8 깨짐 현상
+
+window 객체 내 kakao 변수
+
+현재 콘솔에서 Failed to execute 'write' on 'Document' 라는 오류가 발생하는 이유는:
+
+비동기로 로드 (async defer) 된 카카오 API가 내부적으로 document.write()를 실행
+비동기 스크립트에서는 document.write()가 차단됨 → 크롬 최신 버전에서 오류 발생
+카카오 API가 정상적으로 로드되지 않아 window.kakao.maps가 undefined 상태로 남음
+🔥 해결 방법
+✅ 해결 방법 1: async defer 제거 후 onload 이벤트로 실행
+✅ 해결 방법 2: kakao.maps.load()를 사용하여 API가 로드된 후 실행
+✅ 해결 방법 3: API 호출 방식을 setTimeout에서 MutationObserver 기반으로 변경하여 불필요한 반복 제거
+

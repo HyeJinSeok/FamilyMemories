@@ -25,8 +25,7 @@ public class LoginController extends HttpServlet {
 		//if(id.equals("tester")) {
 			HttpSession session = request.getSession();
 			System.out.println("Session ID: " + session.getId());
-			System.out.println("로그인 ID: " + session.getAttribute("idkey"));
-			System.out.println("로그인 pw: " + session.getAttribute("pwkey"));
+
 			
 			LoginRepository lp = new LoginRepository();
 			User user = lp.validateUser(id, pw);
@@ -42,6 +41,8 @@ public class LoginController extends HttpServlet {
 	            session.setAttribute("userFid", user.getFid());
             	
 			}
+			System.out.println("로그인 ID: " + session.getAttribute("idkey"));
+			System.out.println("로그인 pw: " + session.getAttribute("pwkey"));
 			
 			response.sendRedirect("main");
 		//}
