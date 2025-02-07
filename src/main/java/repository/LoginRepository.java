@@ -38,7 +38,7 @@ public class LoginRepository {
 				String i2 =rs.getString("name");
 				user.setName(i2);
 						
-				int i3 = rs.getInt("id");
+				String i3 = rs.getString("id");
 				user.setId(i3);
 				
 				String i4 = rs.getString("pw");
