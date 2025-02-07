@@ -1,4 +1,4 @@
-# FamilyMemories
+# Family-Trip-Memories
 
 <br>
 
@@ -29,7 +29,15 @@
 
 <br>
 
-### - 
+### - 기술 스택 및 구조
+| <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
+|------------------------------------------------------------------------------------------------------------|----------------------------------|----------------------------------------------------------------------|
+| ▪ Servlet : 클라이언트 요청 처리 및 비즈니스 로직 수행 <br>  ▪ Java 클래스 : 데이터 처리 및 공통 유틸 제공  | ▪ HTML + JSP : UI 구현 및 데이터 바인딩 | ▪ MySQL : 사용자 및 게시글 데이터 관리 <br> ▪ DBConnection 클래스 : 연결 관리 |
+| ▪ MVC 패턴 <br> - Model : DB 연동 및 비즈니스 로직 <br> - View : JSP 활용 <br> - Controller : 서블릿 | HTML, JSP                      | MySQL, DataSource, DBeaver                                                    |
+| 비즈니스 로직 처리 및 View 연결                                      | 사용자와 데이터 상호작용            | DB 연결, 쿼리 실행                                                   |
+
+
+
 <br>
 
 ## 예상되는 서비스 고객층 변화
