@@ -2,9 +2,15 @@ package domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
     private int pid;            // 게시글 ID
     private String title;       // 제목

@@ -18,7 +18,7 @@
         </ul>
     </nav>
 
-    <!-- 📝 내가 쓴 게시물 -->
+    <!-- 내가 쓴 게시물 -->
     <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-blue-600 mb-4">📝 내가 쓴 게시물</h2>
         <%
@@ -44,7 +44,7 @@
         %>
     </div>
 
-    <!-- 🏠 우리 가족 정보 -->
+    <!-- 우리 가족 정보 -->
     <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold text-blue-600 mb-4">🏠 우리 가족 정보</h2>
         <%
