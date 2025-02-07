@@ -30,7 +30,7 @@ public class UserRepository {
 				user = new User();
 				user.setUid(rs.getInt("uid"));
 				user.setName(rs.getString("name"));
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getString("id"));
 				user.setPw(rs.getString("pw"));
 				user.setEmail(rs.getString("email"));
 				user.setFid(rs.getInt("fid"));
@@ -61,7 +61,7 @@ public class UserRepository {
 				User user = new User();
 				user.setUid(rs.getInt("uid"));
 				user.setName(rs.getString("name"));
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getString("id"));
 				user.setPw(rs.getString("pw"));
 				user.setEmail(rs.getString("email"));
 				user.setFid(rs.getInt("fid"));

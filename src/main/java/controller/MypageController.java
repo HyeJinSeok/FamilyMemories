@@ -33,14 +33,14 @@ public class MypageController extends HttpServlet {
         HttpSession session = request.getSession(false); // 세션이 없으면 null 반환
 
         // 세션이 없거나 userId가 설정되지 않은 경우 로그인 페이지로 리디렉트
-        if (session == null || session.getAttribute("userId") == null) {
-        	response.sendRedirect(request.getContextPath() + "/views/jsp/login.jsp"); // 로그인 페이지로 이동
+        if (session == null || session.getAttribute("idkey") == null) {
+        	response.sendRedirect(request.getContextPath() + "login"); // 로그인 페이지로 이동
             return;
         }
     	
     	// 현재 로그인한 사용자의 ID 및 가족 그룹 ID 가져오기
-        int userId = (int) request.getSession().getAttribute("userId");
-        int fid = (int) request.getSession().getAttribute("fid");
+        int userId = (int) request.getSession().getAttribute("uidkey");
+        int fid = (int) request.getSession().getAttribute("userFid");
 
         // 해당 사용자의 정보 조회
         User userInfo = userRepository.getUserById(userId);
@@ -61,10 +61,10 @@ public class MypageController extends HttpServlet {
         request.setAttribute("familyMembers", familyMembers);
 
         // mypage.jsp로 포워딩
-        request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response);
+        request.getRequestDispatcher("mypage").forward(request, response);
         
         try {
-            request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response); //
+            request.getRequestDispatcher("mypage").forward(request, response); //
         } catch(Exception e) {
             e.printStackTrace();
         }

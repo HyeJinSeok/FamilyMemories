@@ -24,13 +24,13 @@ public class PostController extends HttpServlet {
         
         // 📌 세션 확인 및 `uid`, `fid` 가져오기
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("userId") == null || session.getAttribute("fid") == null) {
+        if (session == null || session.getAttribute("idkey") == null || session.getAttribute("userFid") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         
-        int uid = (int) session.getAttribute("userId");
-        int fid = (int) session.getAttribute("fid");
+        int uid = (int) session.getAttribute("uidkey");
+        int fid = (int) session.getAttribute("userFid");
 
         // 📌 폼 데이터 가져오기
         String title = request.getParameter("title");
