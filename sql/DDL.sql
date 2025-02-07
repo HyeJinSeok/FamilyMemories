@@ -23,7 +23,9 @@ Create Table Post(
 		location varchar(100), -- 위치 정보
 		imgsrc varchar(150), -- 이미지 url
 		fid int, -- 가족 그룹 정보
-		FOREIGN KEY (fid) REFERENCES Family(fid)
+		uid int,
+		FOREIGN KEY (fid) REFERENCES Family(fid),
+		FOREIGN KEY (uid) REFERENCES User(uid)
 );
 
 -- Scheduler Table
