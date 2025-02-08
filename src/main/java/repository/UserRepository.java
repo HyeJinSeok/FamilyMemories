@@ -30,7 +30,7 @@ public class UserRepository {
 				user = new User();
 				user.setUid(rs.getInt("uid"));
 				user.setName(rs.getString("name"));
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getString("id"));
 				user.setPw(rs.getString("pw"));
 				user.setEmail(rs.getString("email"));
 				user.setFid(rs.getInt("fid"));
@@ -61,7 +61,7 @@ public class UserRepository {
 				User user = new User();
 				user.setUid(rs.getInt("uid"));
 				user.setName(rs.getString("name"));
-				user.setId(rs.getInt("id"));
+				user.setId(rs.getString("id"));
 				user.setPw(rs.getString("pw"));
 				user.setEmail(rs.getString("email"));
 				user.setFid(rs.getInt("fid"));
@@ -74,5 +74,75 @@ public class UserRepository {
 		}
 		return userList;
 	}
+
+	    // 사용자 회원 가입 
+	    public boolean registerUser(User user) {
+	        Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        try {
+	            conn = DBConnection.getConnection();
+	            String sql = "INSERT INTO User (id, name, pw, email, fid) VALUES (?, ?, ?, ?, ?)";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, user.getId()); // 아이디 저장
+	            pstmt.setString(2, user.getName());
+	            pstmt.setString(3, user.getPw()); // 해싱된 비밀번호 저장
+	            pstmt.setString(4, user.getEmail());
+	            pstmt.setInt(5, user.getFid());
+	            
+	            int rowsInserted = pstmt.executeUpdate();
+	            return rowsInserted > 0;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return false;
+	        } finally {
+	            DBConnection.close(conn, pstmt);
+	        }
+	    }
+	    
+	    public boolean isIdDuplicate(String id) {
+	        Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+
+	        try {
+	            conn = DBConnection.getConnection();
+	            String sql = "SELECT COUNT(*) FROM User WHERE id = ?";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, id);
+	            rs = pstmt.executeQuery();
+
+	            if (rs.next() && rs.getInt(1) > 0) {
+	                return true; // 중복 있음
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            DBConnection.close(conn, pstmt, rs);
+	        }
+	        return false; // 중복 없음
+	    }
+
+	    public boolean isEmailDuplicate(String email) {
+	        Connection conn = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rs = null;
+
+	        try {
+	            conn = DBConnection.getConnection();
+	            String sql = "SELECT COUNT(*) FROM User WHERE email = ?";
+	            pstmt = conn.prepareStatement(sql);
+	            pstmt.setString(1, email);
+	            rs = pstmt.executeQuery();
+
+	            if (rs.next() && rs.getInt(1) > 0) {
+	                return true; // 중복 있음
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            DBConnection.close(conn, pstmt, rs);
+	        }
+	        return false; // 중복 없음
+	    }
 
 }
