@@ -41,9 +41,9 @@ public class RegisterController extends HttpServlet {
         boolean isRegistered = userRepository.registerUser(newUser);
         
         if (isRegistered) {
-            response.sendRedirect(request.getContextPath() + "/views/jsp/login.jsp?status=success");
+            response.sendRedirect(request.getContextPath() + "/login?status=success");
         } else {
-            response.sendRedirect(request.getContextPath() + "/views/jsp/register.jsp?status=failure");
+            response.sendRedirect(request.getContextPath() + "/register?status=failure");
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

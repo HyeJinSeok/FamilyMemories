@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,11 +8,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import repository.PostRepository;
+
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+
+import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/post")
 public class PostController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private PostRepository postRepository;
 
     public PostController() {
@@ -38,18 +47,23 @@ public class PostController extends HttpServlet {
         String startDate = request.getParameter("start_date");
         String endDate = request.getParameter("end_date");
         String location = request.getParameter("location");
-        String imgsrc = request.getParameter("imgsrc");
 
-        // 📌 필수 값 확인 (빈 값 방지)
-        if (title == null || title.trim().isEmpty() || 
-            description == null || description.trim().isEmpty() ||
-            startDate == null || startDate.trim().isEmpty() ||
-            endDate == null || endDate.trim().isEmpty() ||
-            location == null || location.trim().isEmpty() ||
-            imgsrc == null || imgsrc.trim().isEmpty()) {
-            
-            response.sendRedirect(request.getContextPath() + "/post?status=failure");
-            return;
+        // 📌 파일 업로드 처리
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs(); // 📂 폴더가 없으면 생성
+        }
+
+        Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
+        String imgsrc = null;
+
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = UUID.randomUUID().toString() + "_" + extractFileName(filePart);
+            imgsrc = "uploads/" + fileName; // DB에 저장할 상대 경로
+
+            // 파일 저장
+            filePart.write(uploadPath + File.separator + fileName);
         }
 
         // 📌 DB에 INSERT 실행
@@ -61,6 +75,7 @@ public class PostController extends HttpServlet {
         } else {
             response.sendRedirect(request.getContextPath() + "/post?status=failure");
         }
+
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,4 +85,14 @@ public class PostController extends HttpServlet {
             e.printStackTrace();
         }
     }
+    
+    private String extractFileName(Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf("=") + 2, content.length() - 1);
+            }
+        }
+        return "unknown.png";
+    }
+
 }
