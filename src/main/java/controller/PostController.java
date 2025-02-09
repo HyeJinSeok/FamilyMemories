@@ -15,6 +15,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.RequestContext;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +29,33 @@ public class PostController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        if (ServletFileUpload.isMultipartContent((RequestContext)request)) {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            try {
+                List<FileItem> formItems = upload.parseRequest((RequestContext)request);
+                for (FileItem item : formItems) {
+                    if (item.isFormField()) {
+                        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+                        String fieldName = item.getFieldName();
+                        String fieldValue = item.getString();
+                        System.out.println(fieldName + ": " + fieldValue);  // 로깅을 통해 값 확인
+                    } else {
+                        // Process form file field (input type="file").
+                        String fieldName = item.getFieldName();
+                        String fileName = item.getName();
+                        System.out.println(fieldName + " 파일 이름: " + fileName);  // 파일 이름 로깅
+                        // 파일을 저장하거나 처리할 로직 추가
+                    }
+                }
+            } catch (Exception ex) {
+                request.setAttribute("message", "File Upload Failed due to " + ex);
+            }
+        } else {
+            request.setAttribute("message", "Sorry this Servlet only handles file upload request");
+        }
+/*
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         
@@ -47,7 +75,9 @@ public class PostController extends HttpServlet {
         String startDate = request.getParameter("start_date");
         String endDate = request.getParameter("end_date");
         String location = request.getParameter("location");
-
+        System.out.println(title + description + startDate);
+        
+        
         // 📌 파일 업로드 처리
         String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
         File uploadDir = new File(uploadPath);
@@ -75,7 +105,7 @@ public class PostController extends HttpServlet {
         } else {
             response.sendRedirect(request.getContextPath() + "/post?status=failure");
         }
-
+*/
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

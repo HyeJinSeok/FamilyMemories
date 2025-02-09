@@ -43,6 +43,10 @@ public class LoginController extends HttpServlet {
 	            session.setAttribute("emailId", user.getEmail());
 	            session.setAttribute("userFid", user.getFid());
 
+	            String servletVersion = getServletContext().getMajorVersion() + "." + getServletContext().getMinorVersion();
+	            System.out.println("Servlet API version: " + servletVersion);
+
+	            
 	            response.sendRedirect("main");  // 로그인 성공 시 리다이렉트
 	        } else {
 	            // 로그인 실패 처리
