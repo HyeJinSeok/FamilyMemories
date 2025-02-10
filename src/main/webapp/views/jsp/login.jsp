@@ -18,10 +18,19 @@
 		<h2 class="text-2xl font-bold mb-4">🔑 로그인</h2>
 		<form method="post" action="login">
 
-			<input type="text" name="id" placeholder="아이디" x-model="id" class="w-full p-2 border rounded mb-2"> 
-			<input type="password" name="pw" placeholder="비밀번호" x-model="pw" class="w-full p-2 border rounded mb-2"> 
-			<input type="submit" value="로그인" class="w-full bg-green-500 text-white p-2 rounded mt-2 hover:bg-green-600 transition">
+			<input type="text" name="id" placeholder="아이디" x-model="id"
+				class="w-full p-2 border rounded mb-2"> <input
+				type="password" name="pw" placeholder="비밀번호" x-model="pw"
+				class="w-full p-2 border rounded mb-2"> <input type="submit"
+				value="로그인"
+				class="w-full bg-green-500 text-white p-2 rounded mt-2 hover:bg-green-600 transition">
 		</form>
+		
+		<!-- 회원가입 -->
+		<p class="text-center mt-4 text-gray-600"></p>
+		<button onclick="location.href='register'"
+			class="w-full bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-600 transition">
+			회원가입</button>
 	</div>
 
 </body>

@@ -5,19 +5,108 @@
     <meta charset="UTF-8">
     <title>메인 페이지</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Alpine.js 라이브러리 (defer) -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
+    <!-- Kakao 지도 API (defer) -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fa4ea1c9043252a4e21db24e7aa57069&autoload=false" defer></script>
+    
+    <!-- Alpine 컴포넌트 등록 -->
+    <script defer>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('mapApp', () => ({
+            posts: [],
+            selectedPost: null, // 선택된 게시글 (리스트/마커 클릭 시)
+            markers: [],       // 기존 마커를 저장할 배열
+            map: null,
+
+            init() {
+                this.loadPosts();
+                this.initMap();
+            },
+
+            loadPosts() {
+                // 캐시된 데이터가 있으면 먼저 사용
+                let cachedPosts = localStorage.getItem("posts");
+                if (cachedPosts) {
+                    this.posts = JSON.parse(cachedPosts);
+                    this.updateMarkers();
+                }
+
+                // Ajax 요청 시 Ajax 헤더를 추가
+                fetch("<%= request.getContextPath() %>/main", {
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.posts = data;
+                    localStorage.setItem("posts", JSON.stringify(data));  // 데이터 캐싱
+                    console.log(this.posts);
+                    this.updateMarkers();
+                })
+                .catch(error => console.error("❌ 데이터 로드 오류:", error));
+            },
+
+            initMap() {
+                if (!window.kakao || !window.kakao.maps) {
+                    console.error("⚠️ Kakao API가 아직 로드되지 않음. 500ms 후 다시 실행...");
+                    setTimeout(() => this.initMap(), 500);
+                    return;
+                }
+
+                kakao.maps.load(() => {
+                    this.map = new kakao.maps.Map(document.getElementById("map"), {
+                        center: new kakao.maps.LatLng(37.5665, 126.9780),
+                        level: 7
+                    });
+
+                    // 지도 이동 후 마커 갱신
+                    kakao.maps.event.addListener(this.map, "idle", () => {
+                        this.updateMarkers();
+                    });
+
+                    this.updateMarkers();
+                });
+            },
+
+            updateMarkers() {
+                if (!this.map) return;
+
+                // 기존 마커 제거
+                this.markers.forEach(marker => marker.setMap(null));
+                this.markers = [];
+
+                // 게시글 각각에 대해 마커 생성
+                this.posts.forEach(post => {
+                    let coords = new kakao.maps.LatLng(post.latitude, post.longitude);
+                    let marker = new kakao.maps.Marker({
+                        position: coords,
+                        map: this.map
+                    });
+
+                    // 마커 클릭 시 해당 게시글을 모달로 표시
+                    kakao.maps.event.addListener(marker, 'click', () => {
+                        this.selectedPost = post;
+                    });
+
+                    this.markers.push(marker);
+                });
+            }
+        }));
+    });
+    </script>
 </head>
-<body class="bg-gray-100 p-6" x-data="mapApp">
-	<!-- 네비게이션 바 -->
-	<nav class="bg-blue-500 p-4 text-white flex justify-between">
-	    <a href="main" class="text-lg font-bold">여행 기록</a>
-	    <ul class="flex space-x-4">
-	        <li><a href="mypage" class="hover:underline">마이페이지</a></li>
-	        <li><a href="post" class="hover:underline">게시글 작성</a></li>
-	        <li><a href="recommend" class="hover:underline">추천 여행지</a></li>
-	    </ul>
-	</nav>
+<body class="bg-gray-100 p-6" x-data="mapApp()">
+    <!-- 네비게이션 바 -->
+    <nav class="bg-blue-500 p-4 text-white flex justify-between">
+        <a href="main" class="text-lg font-bold">여행 기록</a>
+        <ul class="flex space-x-4">
+            <li><a href="mypage" class="hover:underline">마이페이지</a></li>
+            <li><a href="post" class="hover:underline">게시글 작성</a></li>
+            <li><a href="recommend" class="hover:underline">추천 여행지</a></li>
+        </ul>
+    </nav>
 
     <!-- 메인 레이아웃 -->
     <div class="max-w-6xl mx-auto flex gap-4 mt-6">
@@ -46,90 +135,9 @@
          x-show="selectedPost" x-transition>
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 class="text-xl font-bold" x-text="selectedPost ? selectedPost.title : ''"></h2>
-            <p x-text="selectedPost ? selectedPost.description : ''" class="mt-2 text-gray-700"></p>
+            <p class="mt-2 text-gray-700" x-text="selectedPost ? selectedPost.description : ''"></p>
             <button class="mt-4 bg-red-500 text-white p-2 rounded" @click="selectedPost = null">닫기</button>
         </div>
     </div>
-
-
-    <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('mapApp', () => ({
-            posts: [],
-            selectedPost: null, // 선택된 게시글 (리스트/마커 클릭 시)
-            markers: [], // 기존 마커를 저장할 배열
-            map: null,
-
-            init() {
-                this.loadPosts();
-                this.initMap();
-            },
-
-            loadPosts() {
-                let cachedPosts = localStorage.getItem("posts");
-
-                if (cachedPosts) {
-                    this.posts = JSON.parse(cachedPosts);
-                    this.updateMarkers();
-                }
-
-                fetch("/post")
-                    .then(res => res.json())
-                    .then(data => {
-                        this.posts = data;
-                        localStorage.setItem("posts", JSON.stringify(data));  // 📌 데이터 캐싱
-                        this.updateMarkers();
-                    })
-                    .catch(error => console.error("❌ 데이터 로드 오류:", error));
-            }
-,
-
-            initMap() {
-                if (!window.kakao || !window.kakao.maps) {
-                    console.error("⚠️ Kakao API가 아직 로드되지 않음. 500ms 후 다시 실행...");
-                    setTimeout(() => this.initMap(), 500);
-                    return;
-                }
-
-                kakao.maps.load(() => {
-                    this.map = new kakao.maps.Map(document.getElementById("map"), {
-                        center: new kakao.maps.LatLng(37.5665, 126.9780),
-                        level: 7
-                    });
-
-                    // 📌 지도 이동 후 마커 유지
-                    kakao.maps.event.addListener(this.map, "idle", () => {
-                        this.updateMarkers();
-                    });
-
-                    this.updateMarkers();
-                });
-            },
-
-            updateMarkers() {
-                if (!this.map) return;
-
-                // 📌 기존 마커 제거
-                this.markers.forEach(marker => marker.setMap(null));
-                this.markers = [];
-
-                this.posts.forEach(post => {
-                    let coords = new kakao.maps.LatLng(post.latitude, post.longitude);
-                    let marker = new kakao.maps.Marker({
-                        position: coords,
-                        map: this.map
-                    });
-
-                    // 📌 마커 클릭 시 모달 띄우기
-                    kakao.maps.event.addListener(marker, 'click', () => {
-                        this.selectedPost = post;
-                    });
-
-                    this.markers.push(marker); // 📌 생성된 마커를 배열에 저장
-                });
-            }
-        }));
-    });
-    </script>
 </body>
 </html>

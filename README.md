@@ -1,7 +1,4 @@
-# Family-Trip-Memories
-
-<br>
-
+# 여가錄
 ## 👨‍👩‍👧‍👦 팀원 소개
 
 |<img src="https://avatars.githubusercontent.com/u/193798531?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/153366521?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/74342019?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/127267532?v=4" width="150" height="150"/>|
@@ -12,7 +9,11 @@
 <br>
 
 ## 🚀 프로젝트 목표
+### ▶ 여가錄
 
+- **여가錄**은 여행, 가족, 기록의 줄임말이며 **가족과 함께 소중한 여행의 추억을 기록하고 가족과 공유하는 서비스**입니다.
+- 해당 서비스는 특히 **60대 이상 연령층이 가족 여행의 추억을 기록할 수 있는 서비스가 부족한 현실**을 고려하여 **가족과의 여행을 더욱 쉽고 편리하게 남기고 공유**할 수 있도록 하고자 시작되었습니다.
+<br>
 
 ### ▶ 기술 목표
 - Servlet 및 JSP 기반의 Web Application 개발
