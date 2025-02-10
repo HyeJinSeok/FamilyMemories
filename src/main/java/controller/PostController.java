@@ -84,7 +84,7 @@ public class PostController extends HttpServlet {
 
         // 성공 여부에 따라 페이지 이동
         if (isInserted) {
-            response.sendRedirect(request.getContextPath() + "/post?status=success");
+            response.sendRedirect(request.getContextPath() + "/main");
         } else {
             response.sendRedirect(request.getContextPath() + "/post?status=failure");
         }
