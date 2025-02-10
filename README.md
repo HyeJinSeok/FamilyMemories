@@ -119,7 +119,7 @@
 
 + AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공한다.
 + 해당 날짜에 열리는 축제와 공연을 알려준다.<br>
-<br>
+
 참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
 <hr style="border: 0.5px solid #ccc;" />
 
