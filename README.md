@@ -209,7 +209,7 @@ User user = lp.validateUser(id, pw);
 
 <br>
 
-(3) validateUser()가 유효한 사용자 객체를 반환하면, 비밀번호까지 확인
+(3) validateUser( )가 유효한 사용자 객체를 반환하면, 비밀번호까지 확인
 ```
 if (user != null && SecurityUtil.checkPassword(pw, user.getPw())) {
 ```
@@ -230,17 +230,145 @@ session.setAttribute("userFid", user.getFid());
 
 ### - 게시글 작성
 
-// post.jsp <br>
-<img src="images/post_jsp.png" width="400">
+// post.jsp <br><br>
+<img src="images/post_jsp.png" width="1200">
 
 <br>
 
-// PostRepository.java <br>
-<img src="images/postRepository.png" width="400">
+// PostRepository.java <br><br>
+<img src="images/postRepository.png" width="1200">
 
 <br>
 
-// 
+// PostController.java <br><br>
+(1) doPost( ) - 게시글 저장 및 이미지 업로드
+```
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+```
+<br>
+
+(2) 세션 확인 (로그인한 사용자만 접근 가능)
+```
+HttpSession session = request.getSession(false);
+if (session == null || session.getAttribute("idkey") == null || session.getAttribute("userFid") == null) {
+    response.sendRedirect(request.getContextPath() + "/login");
+    return;
+}
+```
+<br>
+
+(3) 입력값(폼 데이터) 가져오기
+```
+int uid = (int) session.getAttribute("uidkey");
+int fid = (int) session.getAttribute("userFid");
+
+String title = request.getParameter("title");
+String description = request.getParameter("description");
+String startDate = request.getParameter("start_date");
+String endDate = request.getParameter("end_date");
+String location = request.getParameter("location");
+```
+
+<br>
+
+(4) 파일 업로드 처리 및 이미지 저장
+```
+String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+File uploadDir = new File(uploadPath);
+if (!uploadDir.exists()) {
+    uploadDir.mkdirs(); // 폴더가 없으면 생성
+}
+
+
+String imgsrc = null;
+Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
+if (filePart != null && filePart.getSize() > 0) {
+    String fileName = UUID.randomUUID().toString() + "_" + filePart.getSubmittedFileName();
+    imgsrc = "uploads/" + fileName; // DB에 저장할 상대 경로
+
+    // 파일 저장
+    Path filePath = Path.of(uploadPath, fileName);
+    Files.copy(filePart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+}
+```
+
+<br>
+
+(5) DB에 게시글 저장
+```
+boolean isInserted = postRepository.insertPost(title, description, startDate, endDate, location, imgsrc, fid, uid);
+```
+
+<br>
+
+(6) 성공 여부에 따라 페이지 이동
+```
+if (isInserted) {
+    response.sendRedirect(request.getContextPath() + "/post?status=success");
+} else {
+    response.sendRedirect(request.getContextPath() + "/post?status=failure");
+}
+```
+
+<br>
+
+### - 마이페이지 조회
+
+(1) doGet( ) - 마이페이지 정보 조회 및 화면 표시
+```
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try {
+        HttpSession session = request.getSession(false); // 세션 가져오기
+```
+<br>
+
+(2) 로그인 확인 (세션 체크)
+```
+// 세션이 없거나 userId가 설정되지 않은 경우 로그인 페이지로 리디렉트
+if (session == null || session.getAttribute("idkey") == null) {
+    response.sendRedirect(request.getContextPath() + "login"); // 로그인 페이지로 이동
+    return;
+}
+```
+<br>
+
+(3) 현재 로그인한 사용자 정보 가져오기
+```
+int userId = (int) request.getSession().getAttribute("uidkey");
+int fid = (int) request.getSession().getAttribute("userFid");
+```
+<br>
+
+(4) DB에서 필요한 데이터 조회
+```
+// 현재 로그인한 사용자 정보 가져오기
+User userInfo = userRepository.getUserById(userId);
+
+// 사용자가 작성한 게시글 가져오기
+List<Post> myPosts = postRepository.getPostsByUserId(userId);
+
+// 사용자 가족 정보 가져오기
+Family family = familyRepository.getFamilyById(fid);
+
+// 같은 가족 그룹(fId)에 속하는 사용자 목록 조회
+List<User> familyMembers = userRepository.getUsersByFamilyId(fid);
+```
+<br>
+
+(5) 조회한 데이터를 JSP에 넘겨주기
+```
+request.setAttribute("userInfo", userInfo);
+request.setAttribute("myPosts", myPosts);
+request.setAttribute("family", family);
+request.setAttribute("familyMembers", familyMembers);
+
+request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response);
+```
+
+<br>
+
 ## Trouble Shooting
 include UTF-8 깨짐 현상
 
