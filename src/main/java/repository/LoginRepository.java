@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import domain.User;
 import utils.DBConnection;
+import utils.SecurityUtil;
 
 public class LoginRepository {
     
@@ -15,48 +16,27 @@ public class LoginRepository {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        
-        
         User user = null;
-        
-        //boolean isValid = false;
 
         try {
-            conn = DBConnection.getConnection(); // DB 연결
-            String sql = "SELECT * FROM User WHERE id = ? AND pw = ?";
+            conn = DBConnection.getConnection();
+            String sql = "SELECT * FROM User WHERE id = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
-            pstmt.setString(2, pw);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-				user = new User();
-				
-				int i1 = rs.getInt("uid");
-				user.setUid(i1);
-				
-				String i2 =rs.getString("name");
-				user.setName(i2);
-						
-				String i3 = rs.getString("id");
-				user.setId(i3);
-				
-				String i4 = rs.getString("pw");
-				user.setPw(i4);
-				
-				String i5 = rs.getString("email");
-				user.setEmail(i5);
-				
-				int i6 = rs.getInt("fid");
-				user.setFid(i6);
-				
-				
-			}else {
-            	throw new IllegalArgumentException("찾는 사용자가 없습니다.");
+                user = new User(
+                    rs.getInt("uid"),
+                    rs.getString("name"),
+                    rs.getString("id"),
+                    rs.getString("pw"),
+                    rs.getString("email"),
+                    rs.getInt("fid")
+                );
+            } else {
+                throw new IllegalArgumentException("찾는 사용자가 없습니다.");
             }
-            
-            
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -69,9 +49,7 @@ public class LoginRepository {
             }
         }
         return user;
-//        return isValid;
     }
-    
     
     public boolean isUserIdExists(String id) throws Exception {
 		Connection con = null;

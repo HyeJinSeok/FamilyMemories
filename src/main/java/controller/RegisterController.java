@@ -6,20 +6,55 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import repository.UserRepository;
+import domain.User;
+import utils.SecurityUtil;
 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private UserRepository userRepository;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    public RegisterController() {
+        this.userRepository = new UserRepository();
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String name = request.getParameter("name");
+        String id = request.getParameter("id");       
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        int fid = Integer.parseInt(request.getParameter("fid"));
+        
+        // 비밀번호 해싱
+        String hashedPassword = SecurityUtil.hashPassword(password);
+        
+        User newUser = new User();
+        newUser.setName(name);
+        newUser.setId(id);
+        newUser.setPw(hashedPassword);
+        newUser.setEmail(email);
+        newUser.setFid(fid);
+        
+        boolean isRegistered = userRepository.registerUser(newUser);
+        
+        if (isRegistered) {
+            response.sendRedirect(request.getContextPath() + "/login?status=success");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/register?status=failure");
+        }
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.getRequestDispatcher("/views/jsp/register.jsp").forward(request, response); //
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+
+

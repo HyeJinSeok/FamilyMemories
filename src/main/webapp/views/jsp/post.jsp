@@ -21,7 +21,7 @@
     <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold mb-4">✍ 게시글 작성</h2>
 
-        <form action="post" method="post">
+        <form action="post" method="post" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="제목" class="w-full p-2 border rounded mb-2">
             <textarea name="description" placeholder="내용" class="w-full p-2 border rounded mb-2"></textarea>
             <input type="date" name="start_date" class="w-full p-2 border rounded mb-2">
@@ -45,7 +45,7 @@
             <!-- 📌 선택된 주소 자동 입력 -->
             <input type="text" id="location" name="location" placeholder="위치" class="w-full p-2 border rounded mb-2" readonly>
 
-            <input type="text" name="imgsrc" placeholder="이미지 URL" class="w-full p-2 border rounded mb-2">
+            <input type="file" name="imgsrc" placeholder="이미지 파일 선택" class="w-full p-2 border rounded mb-2" required>
             
             <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-600 transition">
                 게시글 등록
