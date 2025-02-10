@@ -66,7 +66,7 @@
 <br>
 
 ### ▶ 서비스 개요 
-<img src="https://github.com/user-attachments/assets/a9f16af9-d9a3-4433-9864-adb3eea78df0"
+<img src="https://github.com/user-attachments/assets/b541edf9-86a4-4e00-a6ca-27acfd1b6837"
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
 
@@ -107,7 +107,7 @@
 
 
 
-
++ main 페이지에서는 **가족들이 적은 모든 게시물**과 **캘린더 형태로 일정**을 확인 가능하다.
 + 가족 여행 기록에 적혀있는 **장소**들을 오른쪽 지도에서 **핀 설정**하였다.
 
 <br>
