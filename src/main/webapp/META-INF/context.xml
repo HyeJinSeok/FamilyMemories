@@ -5,6 +5,6 @@
 
   <Resource name="jdbc/fisaDB" auth="Container" type="javax.sql.DataSource"
                maxTotal="20" maxIdle="10" maxWaitMillis="-1"
-               username="user01" password="user01" driverClassName="com.mysql.cj.jdbc.Driver"
-               url="jdbc:mysql://localhost:8888/fisa"/>
+               username="user02" password="user02" driverClassName="com.mysql.cj.jdbc.Driver"
+               url="jdbc:mysql://192.168.1.241:3306/fisa"/>
 </Context>
