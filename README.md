@@ -22,17 +22,20 @@
 
 <br>
 
-### ▶ 기술 스택
+
+### ▶ 서비스 목표
+- 60대 연령층을 대상으로 한 맞춤 서비스
+- 수익 창출을 위한 비지니스 모델 구현
+
+<br>
+
+## 🛠 기술 스택
 <p>
   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
   <img src="https://img.shields.io/badge/JSP-ff7800?style=flat&logo=coffeescript&logoColor=white">
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white">
   <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white">
 </p>
-
-### ▶ 서비스 목표
-- 60대 연령층을 대상으로 한 맞춤 서비스
-- 수익 창출을 위한 비지니스 모델 구현
 
 <br>
 
