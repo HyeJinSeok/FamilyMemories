@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import domain.Post;
 import utils.DBConnection;
 
@@ -14,29 +13,58 @@ public class PostRepository {
 
     public boolean insertPost(String title, String description, String startDate, String endDate, String location, String imgsrc, int fid, int uid) {
         Connection conn = null;
-        PreparedStatement pstmt = null;
-        
+        PreparedStatement pstmtPost = null;
+        PreparedStatement pstmtScheduler = null;
+
         try {
             conn = DBConnection.getConnection();
-            
-            String sql = "INSERT INTO Post (title, description, start_date, end_date, location, imgsrc, fid, uid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, title);
-            pstmt.setString(2, description);
-            pstmt.setString(3, startDate);
-            pstmt.setString(4, endDate);
-            pstmt.setString(5, location);
-            pstmt.setString(6, imgsrc);
-            pstmt.setInt(7, fid);
-            pstmt.setInt(8, uid);
-            
-            int rowsInserted = pstmt.executeUpdate();
-            return rowsInserted > 0;
+            conn.setAutoCommit(false); // 트랜잭션 시작 (둘 중 하나라도 실패하면 롤백)
+
+            // Post 테이블
+            String sqlPost = "INSERT INTO Post (title, description, start_date, end_date, location, imgsrc, fid, uid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            pstmtPost = conn.prepareStatement(sqlPost);
+            pstmtPost.setString(1, title);
+            pstmtPost.setString(2, description);
+            pstmtPost.setString(3, startDate);
+            pstmtPost.setString(4, endDate);
+            pstmtPost.setString(5, location);
+            pstmtPost.setString(6, imgsrc);
+            pstmtPost.setInt(7, fid);
+            pstmtPost.setInt(8, uid);
+
+            int postInserted = pstmtPost.executeUpdate();
+
+            // Scheduler 테이블
+            String sqlScheduler = "INSERT INTO Scheduler (title, start_date, end_date, location, fid, uid) VALUES (?, ?, ?, ?, ?, ?)";
+            pstmtScheduler = conn.prepareStatement(sqlScheduler);
+            pstmtScheduler.setString(1, title);
+            pstmtScheduler.setString(2, startDate);
+            pstmtScheduler.setString(3, endDate);
+            pstmtScheduler.setString(4, location);
+            pstmtScheduler.setInt(5, fid);
+            pstmtScheduler.setInt(6, uid);
+
+            int schedulerInserted = pstmtScheduler.executeUpdate();
+
+            //둘 다 성공해야 커밋
+            if (postInserted > 0 && schedulerInserted > 0) {
+                conn.commit();
+                return true;
+            } else {
+                conn.rollback(); // 하나라도 실패하면 롤백
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                if (conn != null) conn.rollback(); // 예외 발생 시 롤백
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
             return false;
         } finally {
-            DBConnection.close(conn, pstmt);
+            DBConnection.close(conn, pstmtPost);
+            DBConnection.close(null, pstmtScheduler);
         }
     }
     
@@ -74,4 +102,5 @@ public class PostRepository {
 		return postList;
 	}
 }
+
 
