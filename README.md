@@ -431,7 +431,7 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 ```
 
 
-![alt text](images/image-2.png)
+![alt text](image-2.png)
 
 
 ```
@@ -450,7 +450,7 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 
 ### ▸ window 객체 내 kakao 변수
 
-![alt text](images/image-1.png)
+![alt text](image-1.png)
 
 - response 객체를 확인한 결과 kakao 객체는 window 객체 하위의 프로퍼티로 추가됨
 
@@ -465,13 +465,13 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 
 ✅ **async defer 제거 후 onload 이벤트로 실행**<br>
 
-![alt text](images/image.png)
+![alt text](image.png)
 
 <br>
 
 ### ▸ Enctype = multipart 객체 전달 간 오류
 
-![alt text](images/image-3.png)<br><br>
+![alt text](image-3.png)<br><br>
 
 
 - 이전 servlet의 경우 enctype 변환을 통한 form 전달은 apache commons 관련 lib을 통해 이루어짐
