@@ -2,7 +2,13 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +27,11 @@ import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/post")
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 1, // 1MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10MB
+	    maxRequestSize = 1024 * 1024 * 15    // 15MB
+	)
 public class PostController extends HttpServlet {
     private PostRepository postRepository;
 
@@ -30,36 +41,10 @@ public class PostController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (ServletFileUpload.isMultipartContent((RequestContext)request)) {
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            try {
-                List<FileItem> formItems = upload.parseRequest((RequestContext)request);
-                for (FileItem item : formItems) {
-                    if (item.isFormField()) {
-                        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
-                        String fieldName = item.getFieldName();
-                        String fieldValue = item.getString();
-                        System.out.println(fieldName + ": " + fieldValue);  // 로깅을 통해 값 확인
-                    } else {
-                        // Process form file field (input type="file").
-                        String fieldName = item.getFieldName();
-                        String fileName = item.getName();
-                        System.out.println(fieldName + " 파일 이름: " + fileName);  // 파일 이름 로깅
-                        // 파일을 저장하거나 처리할 로직 추가
-                    }
-                }
-            } catch (Exception ex) {
-                request.setAttribute("message", "File Upload Failed due to " + ex);
-            }
-        } else {
-            request.setAttribute("message", "Sorry this Servlet only handles file upload request");
-        }
-/*
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         
-        // 📌 세션 확인 및 `uid`, `fid` 가져오기
+        // 세션 확인 및 `uid`, `fid` 가져오기
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("idkey") == null || session.getAttribute("userFid") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
@@ -69,43 +54,40 @@ public class PostController extends HttpServlet {
         int uid = (int) session.getAttribute("uidkey");
         int fid = (int) session.getAttribute("userFid");
 
-        // 📌 폼 데이터 가져오기
+        // 폼 데이터 가져오기
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String startDate = request.getParameter("start_date");
         String endDate = request.getParameter("end_date");
         String location = request.getParameter("location");
-        System.out.println(title + description + startDate);
-        
-        
-        // 📌 파일 업로드 처리
+
+        // 파일 업로드 처리
         String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
-            uploadDir.mkdirs(); // 📂 폴더가 없으면 생성
+            uploadDir.mkdirs(); // 폴더가 없으면 생성
         }
 
-        Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
         String imgsrc = null;
-
+        Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
         if (filePart != null && filePart.getSize() > 0) {
-            String fileName = UUID.randomUUID().toString() + "_" + extractFileName(filePart);
+            String fileName = UUID.randomUUID().toString() + "_" + filePart.getSubmittedFileName();
             imgsrc = "uploads/" + fileName; // DB에 저장할 상대 경로
 
             // 파일 저장
-            filePart.write(uploadPath + File.separator + fileName);
+            Path filePath = Path.of(uploadPath, fileName);
+            Files.copy(filePart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         }
 
-        // 📌 DB에 INSERT 실행
+        // DB에 INSERT 실행
         boolean isInserted = postRepository.insertPost(title, description, startDate, endDate, location, imgsrc, fid, uid);
 
-        // 📌 성공 여부에 따라 페이지 이동
+        // 성공 여부에 따라 페이지 이동
         if (isInserted) {
             response.sendRedirect(request.getContextPath() + "/post?status=success");
         } else {
             response.sendRedirect(request.getContextPath() + "/post?status=failure");
         }
-*/
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

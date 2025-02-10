@@ -11,7 +11,7 @@
 <body class="bg-gray-100 p-6" x-data="mapApp">
 	<!-- 네비게이션 바 -->
 	<nav class="bg-blue-500 p-4 text-white flex justify-between">
-	    <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
+	    <a href="main" class="text-lg font-bold">여행 기록</a>
 	    <ul class="flex space-x-4">
 	        <li><a href="mypage" class="hover:underline">마이페이지</a></li>
 	        <li><a href="post" class="hover:underline">게시글 작성</a></li>
@@ -73,7 +73,7 @@
                     this.updateMarkers();
                 }
 
-                fetch("/getPosts")
+                fetch("/post")
                     .then(res => res.json())
                     .then(data => {
                         this.posts = data;
