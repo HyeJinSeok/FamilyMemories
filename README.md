@@ -141,6 +141,7 @@
 
 ![recommend](https://github.com/user-attachments/assets/095a7e9a-01fe-4dd7-b72f-0367ec16722b)
 
++ ELK를 활용해서 DB에 저장된 포스팅 글을 분석하고 연관 단어나 추천 키워드를 제시
 
 <br>
 
