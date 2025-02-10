@@ -90,7 +90,8 @@
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 3. 메인
-![main](https://github.com/user-attachments/assets/610d91ba-866e-42f3-8c6b-7fa6b165ac09)
+![main](https://github.com/user-attachments/assets/9f214b87-2396-400e-af05-e645d80755b7)
+
 
 
 + 가족 여행 기록에 적혀있는 **장소**들을 오른쪽 지도에서 **핀 설정**하였다.
