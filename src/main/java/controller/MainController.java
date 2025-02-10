@@ -12,11 +12,13 @@ import repository.MainRepository;
 import repository.SchedulerRepository;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/main") // 기존처럼 /main에서 모든 데이터를 처리
+@WebServlet("/main")
 public class MainController extends HttpServlet {
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -33,20 +35,20 @@ public class MainController extends HttpServlet {
         boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
         if ("titles".equals(type)) {
-            // 게시글 제목 목록 JSON 응답
             List<Post> postList = MainRepository.getPostsByFamilyId(userFid);
             List<String> postTitles = postList.stream().map(Post::getTitle).collect(Collectors.toList());
             sendJsonResponse(response, postTitles);
         } else if ("schedule".equals(type)) {
-            // 일정 목록 JSON 응답 (ScheduleController 기능 포함)
+            // 일정 목록 JSON 응답 (ISO 8601 형식 날짜 변환)
             List<Scheduler> scheduleList = SchedulerRepository.getSchedulesByFamilyId(userFid);
-            sendJsonResponse(response, scheduleList);
+            List<SchedulerDTO> scheduleDTOs = scheduleList.stream().map(s -> 
+                new SchedulerDTO(s.getTitle(), dateFormat.format(s.getStartDate()), dateFormat.format(s.getEndDate()), s.getLocation())
+            ).collect(Collectors.toList());
+            sendJsonResponse(response, scheduleDTOs);
         } else if (isAjax) {
-            // 전체 게시글 JSON 응답
             List<Post> postList = MainRepository.getPostsByFamilyId(userFid);
             sendJsonResponse(response, postList);
         } else {
-            // JSP 페이지로 포워딩 (게시글 + 일정 데이터 포함)
             request.setAttribute("familyPosts", MainRepository.getPostsByFamilyId(userFid));
             request.setAttribute("familySchedules", SchedulerRepository.getSchedulesByFamilyId(userFid));
             request.getRequestDispatcher("/views/jsp/main.jsp").forward(request, response);
@@ -58,4 +60,16 @@ public class MainController extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(jsonResponse);
     }
+
+    private static class SchedulerDTO {
+        String title, start, end, location;
+
+        public SchedulerDTO(String title, String start, String end, String location) {
+            this.title = title;
+            this.start = start;
+            this.end = end;
+            this.location = location;
+        }
+    }
 }
+

@@ -10,8 +10,6 @@ import domain.Scheduler;
 import utils.DBConnection;
 
 public class SchedulerRepository {
-
-    // 가족 ID에 속한 모든 일정 가져오기
     public static List<Scheduler> getSchedulesByFamilyId(int fid) {
         List<Scheduler> scheduleList = new ArrayList<>();
         String sql = "SELECT * FROM Scheduler WHERE fid = ? ORDER BY start_date";
