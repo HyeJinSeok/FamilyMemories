@@ -229,12 +229,12 @@ session.setAttribute("userFid", user.getFid());
 ### - 게시글 작성
 
 // post.jsp <br>
-<img src="images/post_jsp.png" width="400">
+<img src="images/post_jsp.png" width="1200">
 
 <br>
 
 // PostRepository.java <br>
-<img src="images/postRepository.png" width="400">
+<img src="images/postRepository.png" width="1200">
 
 <br>
 
