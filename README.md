@@ -65,7 +65,7 @@
 
 <br>
 
-### ▶ 서비스 개요 
+### ▶ 서비스 기능 개요 
 <img src="https://github.com/user-attachments/assets/b541edf9-86a4-4e00-a6ca-27acfd1b6837"
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
