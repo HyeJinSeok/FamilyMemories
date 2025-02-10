@@ -64,6 +64,57 @@
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
 
+### ▶ 기능 소개
+#### 1. 회원가입
+
+![register_1226](https://github.com/user-attachments/assets/75cfc705-b578-49d2-86a1-150f16bb740d)
+
+이름, 아이디, 비밀번호, 이메일, 가족 그룹ID를 넣고 회원가입을 시도한다.<br>
+만약 실패시 "회원가입에 실패했습니다. 다시 시도해주세요." 문구가 뜬다.
+
+![register](https://github.com/user-attachments/assets/c4a759a7-5847-43f3-81d3-b7f9f1785aad)
+
+<hr style="border: 0.5px solid #ccc;" />
+
+#### 2. 로그인<br>
+![login](https://github.com/user-attachments/assets/ddc2a956-6cdf-4f7c-aebf-bcfc8249e436)
+
+ID와 PW를 정확하게 입력하고 로그인시 창이 main으로 넘어간다.
+
+
+<hr style="border: 0.5px solid #ccc;" />
+
+#### 3. 메인
+
+
+
+
+<hr style="border: 0.5px solid #ccc;" />
+
+#### 4. 마이페이지
+
+![mypage](https://github.com/user-attachments/assets/13108112-2be2-4e29-9747-4eb883483a11)
+
+마이페이지에는 내가 쓴 글과, 내 가족정보, 그리고 내 정보가 뜬다. 내가 쓴 게시물의 제목을 누르면 내용과 장소, 여행날짜와 사진이 뜬다. 
+
+
+<hr style="border: 0.5px solid #ccc;" />
+
+ 
+#### 5. 게시글 작성
+
+   ![Post_O](https://github.com/user-attachments/assets/e2bd8f97-8008-4a89-bd32-fff601518c0d)
+
+   
+
+<hr style="border: 0.5px solid #ccc;" />
+
+#### 6. 추천 여행지(아이디어)
+
+![AIrecommend](https://github.com/user-attachments/assets/15fd117f-d17c-4f31-9583-9193c8b19812)
+
+AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공한다. 또한 해당 날짜에 열리는 축제와 공연을 알려준다
+<hr style="border: 0.5px solid #ccc;" />
 
 ### ▶ 기술 스택 및 구조
 | <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
