@@ -1,4 +1,7 @@
-# 여가錄
+# 여가錄(록)
+
+<br>
+
 ## 👨‍👩‍👧‍👦 팀원 소개
 
 |<img src="https://avatars.githubusercontent.com/u/193798531?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/153366521?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/74342019?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/127267532?v=4" width="150" height="150"/>|
@@ -9,13 +12,13 @@
 <br>
 
 ## 🚀 프로젝트 목표
-### ▶ 여가錄
+### ▸ 여가錄
 
 - **여가錄**은 여행, 가족, 기록의 줄임말이며 **가족과 함께 소중한 여행의 추억을 기록하고 가족과 공유하는 서비스**입니다.
 - 해당 서비스는 특히 **60대 이상 연령층이 가족 여행의 추억을 기록할 수 있는 서비스가 부족한 현실**을 고려하여 **가족과의 여행을 더욱 쉽고 편리하게 남기고 공유**할 수 있도록 하고자 시작되었습니다.
 <br>
 
-### ▶ 기술 목표
+### ▸ 기술 목표
 - Servlet 및 JSP 기반의 Web Application 개발
 - Session을 통한 사용자 인증 및 상태 관리
 - DataBase 연동으로 동적 데이터 처리
@@ -23,12 +26,14 @@
 <br>
 
 
-### ▶ 서비스 목표
+### ▸ 서비스 목표
+>>>>>>> aea34e2 (README 업데이트 및 images 폴더 추가)
 - 60대 연령층을 대상으로 한 맞춤 서비스
 - 수익 창출을 위한 비지니스 모델 구현
 
 <br>
 
+<br>
 
 ## 📆 개발 기간
 - 2025.02.03 ~ 2025.02.10
@@ -55,9 +60,9 @@
 
 💡 가족 구성원 모두가 서비스를 편리하게 이용할 수 있도록 스마트폰 사용에 능숙하고, 여행을 다니는 데 제약이 적으며, 경제적 여유가 있어 평균적인 가족보다 **여행 빈도가 높은 계층**을 주요 타겟으로 설정하는 것이 적절하다고 판단했다.<br>
 
-이러한 기준을 바탕으로, 2030 자녀 세대의 유입을 시작점으로 삼아 궁극적으로는 Family-Trip-Memories의 본래 타겟인 **은퇴 후 여유로운 삶을 즐기려는 50~60대 연령층**까지 자연스럽게 확산될 것이라는 의견을 모았다.<br>
+이러한 기준을 바탕으로, 2030 자녀 세대의 유입을 시작점으로 삼아 궁극적으로는 여가錄의 본래 타겟인 **은퇴 후 여유로운 삶을 즐기려는 50~60대 연령층**까지 자연스럽게 확산될 것이라는 의견을 모았다.<br>
 
-또한 10세 미만의 영유아를 둔 30~40대 부모 세대는 가족과의 **추억을 기록하는 데 높은 관심**을 가지며 실제로 가족 관련 사진을 많이 남기려는 경향이 있다. 이러한 특성을 반영하면, 이들이 서비스에 적극적으로 유입될 가능성이 높으며 이를 통해 Family-Trip-Memories의 초기 홍보 효과를 기대할 수 있다.
+또한 10세 미만의 영유아를 둔 30~40대 부모 세대는 가족과의 **추억을 기록하는 데 높은 관심**을 가지며 실제로 가족 관련 사진을 많이 남기려는 경향이 있다. 이러한 특성을 반영하면, 이들이 서비스에 적극적으로 유입될 가능성이 높으며 이를 통해 여가錄의 초기 홍보 효과를 기대할 수 있다.
 
 <br>
 
@@ -66,13 +71,15 @@
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
 
+<br>
+
 ### ▶ 기능 소개
 #### 1. 회원가입
 ![register_1226](https://github.com/user-attachments/assets/75cfc705-b578-49d2-86a1-150f16bb740d)
 + **이름, 아이디, 비밀번호, 이메일, 가족 그룹ID**를 넣고 회원가입을 시도한다.
 + 만약 실패시 **"회원가입에 실패했습니다. 다시 시도해주세요."** 문구가 뜬다.
 
-
+<br>
 
 
 <details>
@@ -82,6 +89,8 @@
 
 </details>
 
+<br>
+
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 2. 로그인<br>
@@ -89,15 +98,21 @@
 
 
 + **ID와 PW**를 정확하게 입력하고 로그인시 창이 **main으로 넘어간다**.
+
+<br>
+
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 3. 메인
+![main](https://github.com/user-attachments/assets/9f214b87-2396-400e-af05-e645d80755b7)
 
-![main](https://github.com/user-attachments/assets/7d525ea3-8f41-4ba8-b6be-9d688a02ac50)
 
 
 
 + 가족 여행 기록에 적혀있는 **장소**들을 오른쪽 지도에서 **핀 설정**하였다.
+
+<br>
+
 
 <hr style="border: 0.5px solid #ccc;" />
 
@@ -107,6 +122,9 @@
 
 + 마이페이지에는 **내가 쓴 글과, 내 가족정보, 그리고 내 정보**가 뜬다.<br>
 + 내가 쓴 게시물의 제목을 누르면 **내용과 장소, 여행날짜와 사진**이 뜬다. 
+
+<br>
+
 <hr style="border: 0.5px solid #ccc;" />
 
  
@@ -116,6 +134,9 @@
 + **제목과 내용, 여행 날짜**를 선택한다.
 + **키워드를 입력**하면 장소를 검색할 수 있다. 장소를 선택하면 **자동적으로 위치가 선택**된다.
 + **사진파일**을 선택해서 올리고 게시글을 등록한다. 
+
+<br>
+
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 6. 추천 여행지(아이디어)
@@ -126,6 +147,9 @@
 + 해당 날짜에 열리는 축제와 공연을 알려준다.<br>
 
 참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
+
+<br>
+
 <hr style="border: 0.5px solid #ccc;" />
 
 
@@ -142,8 +166,6 @@
 |------------------------------------------------------------------------------------------------------------|----------------------------------|----------------------------------------------------------------------|
 | ▪ 클라이언트 요청 처리 및 비즈니스 로직 수행 <br>  ▪ 데이터 처리 및 공통 유틸 제공  | ▪ UI 구현 및 데이터 바인딩 | ▪ 사용자 및 게시글 데이터 관리 <br> ▪ DBConnection 연결 관리 |
                                 
-
-
 
 <br>
 
@@ -204,7 +226,7 @@
 
 ## 📋주요 코드
 
-### - 로그인과 세션
+### 🔴 로그인과 세션
 
 (1) 클라이언트에서 POST 방식으로 전송한 id와 pw를 request로 받음
 ```
@@ -241,7 +263,7 @@ session.setAttribute("userFid", user.getFid());
 
 <br>
 
-### - 게시글 작성
+### 🟠 게시글 작성
 
 // post.jsp <br><br>
 <img src="images/post_jsp.png" width="1200">
@@ -327,7 +349,7 @@ if (isInserted) {
 
 <br>
 
-### - 마이페이지 조회
+### 🟡 마이페이지 조회
 
 (1) doGet( ) - 마이페이지 정보 조회 및 화면 표시
 ```
@@ -382,8 +404,9 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 
 <br>
 
-## Trouble Shooting
-### include UTF-8 깨짐 현상
+
+## 🚑 Trouble Shooting
+### ▸ include UTF-8 깨짐 현상 
 ```
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -407,50 +430,60 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 </html>
 ```
 
-![alt text](image-2.png)
+
+![alt text](images/image-2.png)
+
 
 ```
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 ```
 
-pageEncoding으로 해결 불가
+
+- pageEncoding으로 해결 불가
+
 <br><br>
 
 
 
-### window 객체 내 kakao 변수
-
-![alt text](image-1.png)
-
-response 객체를 확인한 결과 kakao 객체는 window 객체 하위의 프로퍼티로 추가됨.
-
-### Failed to execute 'write' on 'Document'
-
-비동기로 로드 (async defer) 된 카카오 API가 내부적으로 document.write()를 실행<br>
-비동기 스크립트에서는 document.write()가 차단됨 → 크롬 최신 버전에서 오류 발생<br>
-카카오 API가 정상적으로 로드되지 않아 window.kakao.maps가 undefined 상태로 남음<br><br><br>
 
 
-✅ async defer 제거 후 onload 이벤트로 실행<br>
+
+### ▸ window 객체 내 kakao 변수
+
+![alt text](images/image-1.png)
+
+- response 객체를 확인한 결과 kakao 객체는 window 객체 하위의 프로퍼티로 추가됨
 
 <br>
 
-![alt text](image.png)
+### ▸ Failed to execute 'write' on 'Document'
+
+- 비동기로 로드 (async defer) 된 카카오 API가 내부적으로 document.write()를 실행<br>
+- 비동기 스크립트에서는 document.write()가 차단됨 → 크롬 최신 버전에서 오류 발생<br>
+- 카카오 API가 정상적으로 로드되지 않아 window.kakao.maps가 undefined 상태로 남음<br><br><br>
 
 
-### Enctype = multipart 객체 전달 간 오류
+✅ **async defer 제거 후 onload 이벤트로 실행**<br>
 
-![alt text](image-3.png)<br><br>
+![alt text](images/image.png)
+
+<br>
+
+### ▸ Enctype = multipart 객체 전달 간 오류
+
+![alt text](images/image-3.png)<br><br>
 
 
-이전 servlet의 경우 enctype 변환을 통한 form 전달은 apache commons 관련 lib을 통해 이루어짐.
+- 이전 servlet의 경우 enctype 변환을 통한 form 전달은 apache commons 관련 lib을 통해 이루어짐
 
 
-그러나 이를 사용하자 HttpServletRequest request 객체 인식 문제가 발생.
+- 그러나 이를 사용하자 HttpServletRequest request 객체 인식 문제가 발생
 
 
-현재 servlet은 6 버전으로 이전 lib와 호환이 되지 않음을 짐작함.
+- 현재 servlet은 6 버전으로 이전 lib와 호환이 되지 않음을 짐작함
 
+<br>
+>>>>>>> aea34e2 (README 업데이트 및 images 폴더 추가)
 
 ```
  File uploadDir = new File(uploadPath);
@@ -470,6 +503,7 @@ response 객체를 확인한 결과 kakao 객체는 window 객체 하위의 프�
         }
 ```
 
+<br>
 servlet 6버전에 맞는 File 전달 방식을 사용. getPart를 통해 파일 물리 정보를 받아옴.
 
 
