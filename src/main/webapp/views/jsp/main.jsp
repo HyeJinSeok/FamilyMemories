@@ -238,19 +238,27 @@
     <div id="map" class="w-full h-[500px] bg-gray-200 rounded-lg"></div>
   </div>
   
-  <!-- Modal Dialog -->
-  <div class="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center" x-show="selectedPost">
+<!-- Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center" x-show="selectedPost">
     <div class="bg-white p-6 rounded-xl shadow-xl w-96 relative">
-      <button class="absolute top-2 right-2 text-gray-600 hover:text-black" @click="selectedPost = null">
-        <i class="fas fa-times text-xl"></i>
-      </button>
-      <h2 class="text-2xl font-bold mb-2" x-text="selectedPost ? selectedPost.title : ''"></h2>
-      <p class="text-gray-700 mb-2" x-text="selectedPost ? selectedPost.description : ''"></p>
-      <p class="text-gray-600 text-sm" x-text="selectedPost ? '📍 위치: ' + selectedPost.location : ''"></p>
-      <p class="text-gray-600 text-sm" x-text="selectedPost ? '📅 일정: ' + selectedPost.startDate + ' - ' + selectedPost.endDate : ''"></p>
-      <img :src="selectedPost ? selectedPost.imgsrc : ''" alt="Post Image" class="w-full h-64 object-cover rounded-lg mt-4">
+        <!-- 닫기 버튼 -->
+        <button class="absolute top-2 right-2 bg-gray-200 hover:bg-gray-400 text-gray-700 font-bold py-1 px-2 rounded-full" @click="selectedPost = null">
+            ✖
+        </button>
+
+        <h2 class="text-2xl font-bold mb-2" x-text="selectedPost ? selectedPost.title : ''"></h2>
+        <p class="text-gray-700 mb-2" x-text="selectedPost ? selectedPost.description : ''"></p>
+        <p class="text-gray-600 text-sm" x-text="selectedPost ? '📍 위치: ' + selectedPost.location : ''"></p>
+        <p class="text-gray-600 text-sm" x-text="selectedPost ? '📅 일정: ' + selectedPost.startDate + ' - ' + selectedPost.endDate : ''"></p>
+        <img :src="selectedPost ? selectedPost.imgsrc : ''" alt="Post Image" class="w-full h-64 object-cover rounded-lg mt-4">
+
+        <!-- 추가 닫기 버튼 (모달 내부) -->
+        <button class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectedPost = null">
+            닫기
+        </button>
     </div>
-  </div>
+</div>
+
 </body>
 
 
