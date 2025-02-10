@@ -102,7 +102,7 @@
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 3. 메인
-![main](https://github.com/user-attachments/assets/9f214b87-2396-400e-af05-e645d80755b7)
+![Image](https://github.com/user-attachments/assets/b1d096db-ee39-41f7-8b4e-4a0ca8bf177e)
 
 
 
