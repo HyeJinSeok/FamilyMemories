@@ -95,7 +95,7 @@
 ![login](https://github.com/user-attachments/assets/2350c813-4ab8-4ce4-96b3-316d836c5754)
 
 
-+ **ID와 PW**를 정확하게 입력하면 로그인시 창이 **main 페이지로으로 넘어갑니다**.
++ **ID와 PW**를 정확하게 입력하면 로그인시 창이 **main 페이지로 넘어갑니다**.
 
 <br>
 
