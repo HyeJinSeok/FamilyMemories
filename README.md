@@ -72,14 +72,15 @@
 <details>
   <summary>회원가입 실패시 이미지</summary>
      
-     ![register](https://github.com/user-attachments/assets/265eed32-1911-4b6d-8da4-9adb50a02587)
-     
+    ![register](https://github.com/user-attachments/assets/5f6b401d-6034-4244-9529-5c8686e6d1ae)
+
 </details>
 
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 2. 로그인<br>
-![login](https://github.com/user-attachments/assets/ddc2a956-6cdf-4f7c-aebf-bcfc8249e436)
+![login](https://github.com/user-attachments/assets/2350c813-4ab8-4ce4-96b3-316d836c5754)
+
 
 + ID와 PW를 정확하게 입력하고 로그인시 창이 main으로 넘어간다.
 
