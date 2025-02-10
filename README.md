@@ -139,12 +139,8 @@
 
 #### 6. 추천 여행지(아이디어)
 
-![AIrecommend](https://github.com/user-attachments/assets/15fd117f-d17c-4f31-9583-9193c8b19812)
+![recommend](https://github.com/user-attachments/assets/095a7e9a-01fe-4dd7-b72f-0367ec16722b)
 
-+ AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공합니다. 
-+ 해당 날짜에 열리는 축제와 공연 정보 등을 알려줍니다.<br>
-
-참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
 
 <br>
 
