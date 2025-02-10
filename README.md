@@ -183,6 +183,58 @@
 
 <br>
 
+## 📋주요 코드
+
+### - 로그인과 세션
+
+(1) 클라이언트에서 POST 방식으로 전송한 id와 pw를 request로 받음
+```
+String id = request.getParameter("id");
+String pw = request.getParameter("pw");
+```
+
+<br>
+
+(2) LoginRepository에서 validateUser(id, pw)를 호출해서 아이디, 비밀번호가 맞는 사용자인지 확인
+```
+LoginRepository lp = new LoginRepository();
+User user = lp.validateUser(id, pw);
+```
+
+<br>
+
+(3) validateUser()가 유효한 사용자 객체를 반환하면, 비밀번호까지 확인
+```
+if (user != null && SecurityUtil.checkPassword(pw, user.getPw())) {
+```
+
+<br>
+
+(4) 세션(Session) 생성 및 값 저장
+```
+HttpSession session = request.getSession(true);
+session.setAttribute("uidkey", user.getUid());
+session.setAttribute("namekey", user.getName());
+session.setAttribute("idkey", user.getId());
+session.setAttribute("emailId", user.getEmail());
+session.setAttribute("userFid", user.getFid());
+```
+
+<br>
+
+### - 게시글 작성
+
+// post.jsp <br>
+<img src="images/post_jsp.png" width="400">
+
+<br>
+
+// PostRepository.java <br>
+<img src="images/postRepository.png" width="400">
+
+<br>
+
+// 
 ## Trouble Shooting
 include UTF-8 깨짐 현상
 
