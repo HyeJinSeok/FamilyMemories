@@ -87,8 +87,6 @@
 
 
 + **ID와 PW**를 정확하게 입력하고 로그인시 창이 **main으로 넘어간다**.
-
-
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 3. 메인
@@ -112,8 +110,7 @@
 
 + **제목과 내용, 여행 날짜**를 선택한다.
 + **키워드를 입력**하면 장소를 검색할 수 있다. 장소를 선택하면 **자동적으로 위치가 선택**된다.
-+ 사진파일을 선택해서 올리고 게시글을 등록한다. 
-
++ **사진파일**을 선택해서 올리고 게시글을 등록한다. 
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 6. 추천 여행지(아이디어)
@@ -121,10 +118,11 @@
 ![AIrecommend](https://github.com/user-attachments/assets/15fd117f-d17c-4f31-9583-9193c8b19812)
 
 + AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공한다.
-+ 해당 날짜에 열리는 축제와 공연을 알려준다
++ 해당 날짜에 열리는 축제와 공연을 알려준다.
+참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
 <hr style="border: 0.5px solid #ccc;" />
 
-참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
+
 
 ### ▶ 기술 스택 및 구조
 | <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
