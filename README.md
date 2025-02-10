@@ -255,13 +255,3 @@ window 객체 내 kakao 변수
 ✅ 해결 방법 1: async defer 제거 후 onload 이벤트로 실행
 ✅ 해결 방법 2: kakao.maps.load()를 사용하여 API가 로드된 후 실행
 ✅ 해결 방법 3: API 호출 방식을 setTimeout에서 MutationObserver 기반으로 변경하여 불필요한 반복 제거
-
-//
-## 회고
-김리영
-
-나원호
-
-박지혜 : 
-
-석혜진
