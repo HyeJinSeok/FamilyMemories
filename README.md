@@ -129,7 +129,7 @@
 | <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
 |------------------------------------------------------------------------------------------------------------|----------------------------------|----------------------------------------------------------------------|
 | ▪ 클라이언트 요청 처리 및 비즈니스 로직 수행 <br>  ▪ 데이터 처리 및 공통 유틸 제공  | ▪ UI 구현 및 데이터 바인딩 | ▪ 사용자 및 게시글 데이터 관리 <br> ▪ DBConnection 연결 관리 |
-| ▪ MVC 패턴 <br> - Java Class : DB 연동 및 비즈니스 로직 <br> - View : JSP 활용 <br> - Controller : Servlet | ▪ HTML<br> ▪ JSP                      | ▪ MySQL<br> ▪ DataSource<br> ▪ DBeaver                                                    | 
+| ▪ MVC 패턴 <br> - Java Class : DB 연동 및 비즈니스 로직 <br> - View : JSP 활용 <br> - Controller : Servlet | ▪ HTML<br> ▪ JSP<br> ▪ AlpineJs                      | ▪ MySQL<br> ▪ DataSource<br> ▪ DBeaver                                                    | 
 
 
 <br>
@@ -370,16 +370,100 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 <br>
 
 ## Trouble Shooting
-include UTF-8 깨짐 현상
+### include UTF-8 깨짐 현상
+```
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav class="bg-blue-500 p-4 text-white flex justify-between">
+	    <a href="main.jsp" class="text-lg font-bold">여행 기록</a>
+	    <ul class="flex space-x-4">
+	        <li><a href="mypage.jsp" class="hover:underline">마이페이지</a></li>
+	        <li><a href="post.jsp" class="hover:underline">게시글 작성</a></li>
+	        <li><a href="recommend.jsp" class="hover:underline">추천 여행지</a></li>
+	    </ul>
+	</nav>
 
-window 객체 내 kakao 변수
+</body>
+</html>
+```
 
-현재 콘솔에서 Failed to execute 'write' on 'Document' 라는 오류가 발생하는 이유는:
+![alt text](image-2.png)
 
-비동기로 로드 (async defer) 된 카카오 API가 내부적으로 document.write()를 실행
-비동기 스크립트에서는 document.write()가 차단됨 → 크롬 최신 버전에서 오류 발생
-카카오 API가 정상적으로 로드되지 않아 window.kakao.maps가 undefined 상태로 남음
-🔥 해결 방법
-✅ 해결 방법 1: async defer 제거 후 onload 이벤트로 실행
-✅ 해결 방법 2: kakao.maps.load()를 사용하여 API가 로드된 후 실행
-✅ 해결 방법 3: API 호출 방식을 setTimeout에서 MutationObserver 기반으로 변경하여 불필요한 반복 제거
+```
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+```
+
+pageEncoding으로 해결 불가
+<br><br>
+
+
+
+### window 객체 내 kakao 변수
+
+![alt text](image-1.png)
+
+response 객체를 확인한 결과 kakao 객체는 window 객체 하위의 프로퍼티로 추가됨.
+
+### Failed to execute 'write' on 'Document'
+
+비동기로 로드 (async defer) 된 카카오 API가 내부적으로 document.write()를 실행<br>
+비동기 스크립트에서는 document.write()가 차단됨 → 크롬 최신 버전에서 오류 발생<br>
+카카오 API가 정상적으로 로드되지 않아 window.kakao.maps가 undefined 상태로 남음<br><br><br>
+
+
+✅ async defer 제거 후 onload 이벤트로 실행<br>
+
+<br>
+
+![alt text](image.png)
+
+
+### Enctype = multipart 객체 전달 간 오류
+
+![alt text](image-3.png)<br><br>
+
+
+이전 servlet의 경우 enctype 변환을 통한 form 전달은 apache commons 관련 lib을 통해 이루어짐.
+
+
+그러나 이를 사용하자 HttpServletRequest request 객체 인식 문제가 발생.
+
+
+현재 servlet은 6 버전으로 이전 lib와 호환이 되지 않음을 짐작함.
+
+
+```
+ File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs(); // 폴더가 없으면 생성
+        }
+
+        String imgsrc = null;
+        Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = UUID.randomUUID().toString() + "_" + filePart.getSubmittedFileName();
+            imgsrc = "uploads/" + fileName; // DB에 저장할 상대 경로
+
+            // 파일 저장
+            Path filePath = Path.of(uploadPath, fileName);
+            Files.copy(filePart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+```
+
+servlet 6버전에 맞는 File 전달 방식을 사용. getPart를 통해 파일 물리 정보를 받아옴.
+
+
+```
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 1, // 1MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10MB
+	    maxRequestSize = 1024 * 1024 * 15    // 15MB
+	)
+```

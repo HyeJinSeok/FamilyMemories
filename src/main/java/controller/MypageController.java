@@ -37,7 +37,7 @@ public class MypageController extends HttpServlet {
 
 	        // 세션이 없거나 userId가 설정되지 않은 경우 로그인 페이지로 리디렉트
 	        if (session == null || session.getAttribute("idkey") == null) {
-	        	response.sendRedirect(request.getContextPath() + "login"); // 로그인 페이지로 이동
+	        	response.sendRedirect(request.getContextPath() + "/login"); // 로그인 페이지로 이동
 	            return;
 	        }
 	    	
