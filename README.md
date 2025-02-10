@@ -501,6 +501,7 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 ```
 
 <br>
+
 - servlet 6버전에 맞는 File 전달 방식을 사용. getPart를 통해 파일 물리 정보를 받아옴.
 
 
