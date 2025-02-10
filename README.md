@@ -69,10 +69,14 @@
 ![register_1226](https://github.com/user-attachments/assets/75cfc705-b578-49d2-86a1-150f16bb740d)
 + 이름, 아이디, 비밀번호, 이메일, 가족 그룹ID를 넣고 회원가입을 시도한다.
 + 만약 실패시 "회원가입에 실패했습니다. 다시 시도해주세요." 문구가 뜬다.
+
+
+
+
 <details>
-  <summary>회원가입 실패시 이미지</summary>
-     
-    ![register](https://github.com/user-attachments/assets/5f6b401d-6034-4244-9529-5c8686e6d1ae)
+  <summary>회원가입 실패 메시지 보기</summary>
+
+![register](https://github.com/user-attachments/assets/24574b0c-85e7-44f7-b4e8-7e3160c91899)
 
 </details>
 
