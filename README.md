@@ -66,7 +66,7 @@
 <br>
 
 ### ▶ 서비스 개요 
-<img src="https://github.com/user-attachments/assets/a9f16af9-d9a3-4433-9864-adb3eea78df0"
+<img src="https://github.com/user-attachments/assets/b541edf9-86a4-4e00-a6ca-27acfd1b6837"
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
 
@@ -74,12 +74,11 @@
 
 ### ▶ 기능 소개
 #### 1. 회원가입
-![register_1226](https://github.com/user-attachments/assets/75cfc705-b578-49d2-86a1-150f16bb740d)
-+ **이름, 아이디, 비밀번호, 이메일, 가족 그룹ID**를 넣고 회원가입을 시도한다.
+![Image](https://github.com/user-attachments/assets/fc1ed61b-7336-48ea-be6d-35570dd59758)
++ **이름, 아이디, 비밀번호, 이메일, 가족 그룹ID**를 입력하여 회원가입을 합니다. 
 + 만약 실패시 **"회원가입에 실패했습니다. 다시 시도해주세요."** 문구가 뜬다.
 
 <br>
-
 
 <details>
   <summary>회원가입 실패 메시지 보기</summary>
@@ -96,19 +95,19 @@
 ![login](https://github.com/user-attachments/assets/2350c813-4ab8-4ce4-96b3-316d836c5754)
 
 
-+ **ID와 PW**를 정확하게 입력하고 로그인시 창이 **main으로 넘어간다**.
++ **ID와 PW**를 정확하게 입력하면 로그인시 창이 **main 페이지로 넘어갑니다**.
 
 <br>
 
 <hr style="border: 0.5px solid #ccc;" />
 
 #### 3. 메인
-![main](https://github.com/user-attachments/assets/9f214b87-2396-400e-af05-e645d80755b7)
+![Image](https://github.com/user-attachments/assets/b1d096db-ee39-41f7-8b4e-4a0ca8bf177e)
 
 
 
-
-+ 가족 여행 기록에 적혀있는 **장소**들을 오른쪽 지도에서 **핀 설정**하였다.
++ main 페이지에서는 **가족들이 적은 모든 게시물**과 **캘린더 형태로 일정**을 확인 가능합니다.
++ 가족 여행 기록에 적혀있는 **장소**들을 지도에서 **핀 형태로**도 확인할 수 있습니다.
 
 <br>
 
@@ -119,8 +118,8 @@
 
 ![mypage](https://github.com/user-attachments/assets/13108112-2be2-4e29-9747-4eb883483a11)
 
-+ 마이페이지에는 **내가 쓴 글과, 내 가족정보, 그리고 내 정보**가 뜬다.<br>
-+ 내가 쓴 게시물의 제목을 누르면 **내용과 장소, 여행날짜와 사진**이 뜬다. 
++ 마이페이지에서는 **본인이 작성한 게시글, 본인 및 가족 정보**를 확인 가능합니다. .<br>
++ 내가 쓴 게시물의 제목을 누르면 **내용과 장소, 여행날짜와 사진**이 뜹니다. 
 
 <br>
 
@@ -130,9 +129,9 @@
 #### 5. 게시글 작성
 ![Post_O](https://github.com/user-attachments/assets/e2bd8f97-8008-4a89-bd32-fff601518c0d)
 
-+ **제목과 내용, 여행 날짜**를 선택한다.
-+ **키워드를 입력**하면 장소를 검색할 수 있다. 장소를 선택하면 **자동적으로 위치가 선택**된다.
-+ **사진파일**을 선택해서 올리고 게시글을 등록한다. 
++ 게시글을 올리기 위해 **제목과 내용, 여행 날짜**를 작성합니다. 
++ **키워드를 입력**하면 장소를 검색할 수 있고, 장소를 선택하면 **자동적으로 위치가 선택**됩니다. 
++ **사진파일**을 선택해서 올리고 게시글을 등록합니다. 
 
 <br>
 
@@ -142,8 +141,8 @@
 
 ![AIrecommend](https://github.com/user-attachments/assets/15fd117f-d17c-4f31-9583-9193c8b19812)
 
-+ AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공한다.
-+ 해당 날짜에 열리는 축제와 공연을 알려준다.<br>
++ AI를 이용해 여행지들을 추천해주고, 해당 여행지의 맛집, 유명한 명소, 숙소를 추천한 뒤 효율적인 플랜을 짜준후 사용자에게 제공합니다. 
++ 해당 날짜에 열리는 축제와 공연 정보 등을 알려줍니다.<br>
 
 참고자료 : [Visit Busan 공식 홈페이지](https://www.visitbusan.net/kr/index.do)
 
@@ -502,6 +501,7 @@ request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response)
 ```
 
 <br>
+
 - servlet 6버전에 맞는 File 전달 방식을 사용. getPart를 통해 파일 물리 정보를 받아옴.
 
 
