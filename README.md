@@ -33,14 +33,6 @@
 
 <br>
 
-## 🛠 기술 스택
-<p>
-  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
-  <img src="https://img.shields.io/badge/JSP-ff7800?style=flat&logo=coffeescript&logoColor=white">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white">
-  <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white">
-</p>
-
 <br>
 
 ## 📆 개발 기간
@@ -163,11 +155,17 @@
 
 
 ### ▶ 기술 스택 및 구조
+<p>
+  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
+  <img src="https://img.shields.io/badge/JSP-ff7800?style=flat&logo=coffeescript&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white">
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white">
+</p>
+
 | <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
 |------------------------------------------------------------------------------------------------------------|----------------------------------|----------------------------------------------------------------------|
 | ▪ 클라이언트 요청 처리 및 비즈니스 로직 수행 <br>  ▪ 데이터 처리 및 공통 유틸 제공  | ▪ UI 구현 및 데이터 바인딩 | ▪ 사용자 및 게시글 데이터 관리 <br> ▪ DBConnection 연결 관리 |
-| ▪ MVC 패턴 <br> - Java Class : DB 연동 및 비즈니스 로직 <br> - View : JSP 활용 <br> - Controller : Servlet | ▪ HTML<br> ▪ JSP<br> ▪ AlpineJs                      | ▪ MySQL<br> ▪ DataSource<br> ▪ DBeaver                                                    | 
-
+                                
 
 <br>
 
