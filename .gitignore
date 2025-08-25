@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editors
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+.vscode/
+
+# Build outputs
+build/
+target/
+bin/
+out/
+*.class
+*.war
+*.ear
+*.log
+
+# Java Web (runtime uploads)
+uploads/
+src/main/webapp/uploads/
+
+# Dependency caches
+.gradle/
+.mvn/
+**/tmp/
+**/logs/
+
+# Secrets & local configs
+config.properties
+src/main/resources/config.properties
+src/main/java/**/resources/config.properties
+
+# Java Web manual libs (Maven/Gradle projects should not commit jars)
+src/main/webapp/WEB-INF/lib/
