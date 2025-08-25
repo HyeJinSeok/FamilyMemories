@@ -1,45 +1,46 @@
-# 여가錄(록)
+# JSP/Servlet 기반 가족여행 기록 서비스 - 여가錄
 
 <br>
 
-## 👨‍👩‍👧‍👦 팀원 소개
+'여가錄'은 여행•가족•기록(錄)의 줄임말로 가족과 함께한 여행을 기록 및 공유하는 서비스입니다. <br>
+
+60대 이상 연령층이 쉽고 편리하게 추억을 00할 수 있도록 서비스를 구축하였습니다.
+
+<br>
+
+#### • 기술 목표
+
+− Servlet 및 JSP 기반의 Web Application 개발 <br>
+
+− Session을 통한 사용자 인증 및 상태 관리 <br>
+
+− DataBase 연동으로 동적 데이터 처리
+
+<br>
+
+#### • 프로젝트 기간
+
+📆 2025.02.03 ~ 2025.02.10
+
+<br>
+
+#### • 프로젝트 구조
+
+[🔗 src/main 바로가기 클릭](./src/main)
+
+
+<br>
+
+#### • 팀원 소개
 
 |<img src="https://avatars.githubusercontent.com/u/193798531?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/153366521?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/74342019?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/127267532?v=4" width="150" height="150"/>|
 |:-:|:-:|:-:|:-:|
-|김리영 (Kim Ri-yeong)<br/>[@riyeong0916](https://github.com/riyeong0916)|Park ji hye<br/>[@parkjhhh](https://github.com/parkjhhh)|Ryan Na<br/>[@CooolRyan](https://github.com/CooolRyan)|[@HyeJinSeok](https://github.com/HyeJinSeok)|
+|[@riyeong0916](https://github.com/riyeong0916)|[@parkjhhh](https://github.com/parkjhhh)|[@CooolRyan](https://github.com/CooolRyan)|[@HyeJinSeok](https://github.com/HyeJinSeok)|
 
 
-<br>
+<br><br>
 
-## 🚀 프로젝트 목표
-### ▸ 여가錄
-
-- **여가錄**은 여행, 가족, 기록의 줄임말이며 **가족과 함께 소중한 여행의 추억을 기록하고 가족과 공유하는 서비스**입니다.
-- 해당 서비스는 특히 **60대 이상 연령층이 가족 여행의 추억을 기록할 수 있는 서비스가 부족한 현실**을 고려하여 **가족과 함께한 여행 순간을 쉽고 편리하게 남기고 공유**할 수 있도록 하고자 시작되었습니다.
-<br>
-
-### ▸ 기술 목표
-- Servlet 및 JSP 기반의 Web Application 개발
-- Session을 통한 사용자 인증 및 상태 관리
-- DataBase 연동으로 동적 데이터 처리
-
-<br>
-
-
-### ▸ 서비스 목표
-- 60대 연령층을 대상으로 한 맞춤 서비스
-- 수익 창출을 위한 비지니스 모델 구현
-
-<br>
-
-<br>
-
-## 📆 개발 기간
-- 2025.02.03 ~ 2025.02.10
-
-<br>
-
-## 📚 프로젝트 소개
+## ◈ 프로젝트 개요
 
 
 ### ▶ 가족여행 기록 및 플랜 추천 애플리케이션
@@ -63,17 +64,17 @@
 
 또한 10세 미만의 영유아를 둔 30~40대 부모 세대는 가족과의 **추억을 기록하는 데 높은 관심**을 가지며 실제로 가족 관련 사진을 많이 남기려는 경향이 있다. 이러한 특성을 반영하면, 이들이 서비스에 적극적으로 유입될 가능성이 높으며 이를 통해 여가錄의 초기 홍보 효과를 기대할 수 있다.
 
-<br>
+<br><br>
 
-### ▶ 서비스 기능 개요 
+## ◈ 서비스 기능
 <img src="https://github.com/user-attachments/assets/b541edf9-86a4-4e00-a6ca-27acfd1b6837"
      alt="서비스 개요"
      style="display: block; margin: 0 auto; width: 70%; max-width: 400px;">
 
 <br>
 
-### ▶ 기능 소개
-#### 1. 회원가입
+
+### ① 회원가입
 ![Image](https://github.com/user-attachments/assets/fc1ed61b-7336-48ea-be6d-35570dd59758)
 + **이름, 아이디, 비밀번호, 이메일, 가족 그룹ID**를 입력하여 회원가입을 합니다. 
 + 만약 실패시 **"회원가입에 실패했습니다. 다시 시도해주세요."** 문구가 뜬다.
@@ -89,9 +90,8 @@
 
 <br>
 
-<hr style="border: 0.5px solid #ccc;" />
+### ② 로그인
 
-#### 2. 로그인<br>
 ![login](https://github.com/user-attachments/assets/2350c813-4ab8-4ce4-96b3-316d836c5754)
 
 
@@ -99,9 +99,9 @@
 
 <br>
 
-<hr style="border: 0.5px solid #ccc;" />
 
-#### 3. 메인
+
+#### ③ 메인 페이지
 ![Image](https://github.com/user-attachments/assets/b1d096db-ee39-41f7-8b4e-4a0ca8bf177e)
 
 
@@ -111,10 +111,7 @@
 
 <br>
 
-
-<hr style="border: 0.5px solid #ccc;" />
-
-#### 4. 마이페이지
+#### ④ 마이페이지
 
 ![mypage](https://github.com/user-attachments/assets/13108112-2be2-4e29-9747-4eb883483a11)
 
@@ -123,10 +120,8 @@
 
 <br>
 
-<hr style="border: 0.5px solid #ccc;" />
-
  
-#### 5. 게시글 작성
+#### ⑤ 게시글 작성
 ![Post_O](https://github.com/user-attachments/assets/e2bd8f97-8008-4a89-bd32-fff601518c0d)
 
 + 게시글을 올리기 위해 **제목과 내용, 여행 날짜**를 작성합니다. 
@@ -135,9 +130,8 @@
 
 <br>
 
-<hr style="border: 0.5px solid #ccc;" />
 
-#### 6. 추천 여행지(아이디어)
+#### ⑥ 추천 여행지(아이디어)
 
 ![recommend](https://github.com/user-attachments/assets/095a7e9a-01fe-4dd7-b72f-0367ec16722b)
 
@@ -149,7 +143,7 @@
 
 
 
-### ▶ 기술 스택 및 구조
+###  기술 스택 및 구조
 <p>
   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
   <img src="https://img.shields.io/badge/JSP-ff7800?style=flat&logo=coffeescript&logoColor=white">
@@ -157,250 +151,11 @@
   <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white">
 </p>
 
-| <span style="color:#FF5733">Back-end</span>                                                                                                   | <span style="color:#FF5733">Front-end</span>                        | <span style="color:#FF5733">Database 연동</span>                                                         |
-|------------------------------------------------------------------------------------------------------------|----------------------------------|----------------------------------------------------------------------|
-| ▪ 클라이언트 요청 처리 및 비즈니스 로직 수행 <br>  ▪ 데이터 처리 및 공통 유틸 제공  | ▪ UI 구현 및 데이터 바인딩 | ▪ 사용자 및 게시글 데이터 관리 <br> ▪ DBConnection 연결 관리 |
-                                
-
-<br>
-
-## 📌 프로젝트 폴더 구조
-
-<br>
-
-```
-📂 프로젝트 루트
-├── 📂 controller
-│   ├── CheckDuplicateController.class
-│   ├── LoginController.class
-│   ├── MainController.class
-│   ├── MypageController.class
-│   ├── PostController.class
-│   ├── RecommendController.class
-│   ├── RegisterController.class
-│
-├── 📂 domain
-│   ├── Family.class
-│   ├── Post.class
-│   ├── Recommend.class
-│   ├── User.class
-│
-├── 📂 repository
-│   ├── FamilyRepository.class
-│   ├── LoginRepository.class
-│   ├── MainRepository.class
-│   ├── MypageRepository.class
-│   ├── PostRepository.class
-│   ├── RecommendRepository.class
-│   ├── UserRepository.class
-│
-├── 📂 resources
-│   ├── config.properties
-│
-├── 📂 utils
-│   ├── DBConnection.class
-│   ├── SecurityUtil.class
-│
-├── 📂 views/jsp
-│   ├── 📂 includes
-│   │   ├── footer.jsp
-│   │   ├── header.jsp
-│   ├── login.jsp
-│   ├── main.jsp
-│   ├── mypage.jsp
-│   ├── post.jsp
-│   ├── recommend.jsp
-│   ├── register.jsp
-│
-├── 📂 META-INF
-│   ├── MANIFEST.MF
-│   ├── context.xml
-```
-
-<br>
-
-## 📋주요 코드
-
-### 🔴 로그인과 세션
-
-(1) 클라이언트에서 POST 방식으로 전송한 id와 pw를 request로 받음
-```
-String id = request.getParameter("id");
-String pw = request.getParameter("pw");
-```
-
-<br>
-
-(2) LoginRepository에서 validateUser(id, pw)를 호출해서 아이디, 비밀번호가 맞는 사용자인지 확인
-```
-LoginRepository lp = new LoginRepository();
-User user = lp.validateUser(id, pw);
-```
-
-<br>
-
-(3) validateUser( )가 유효한 사용자 객체를 반환하면, 비밀번호까지 확인
-```
-if (user != null && SecurityUtil.checkPassword(pw, user.getPw())) {
-```
-
-<br>
-
-(4) 세션(Session) 생성 및 값 저장
-```
-HttpSession session = request.getSession(true);
-session.setAttribute("uidkey", user.getUid());
-session.setAttribute("namekey", user.getName());
-session.setAttribute("idkey", user.getId());
-session.setAttribute("emailId", user.getEmail());
-session.setAttribute("userFid", user.getFid());
-```
-
-<br>
-
-### 🟠 게시글 작성
-
-// post.jsp <br><br>
-<img src="images/post_jsp.png" width="1200">
-
-<br>
-
-// PostRepository.java <br><br>
-<img src="images/postRepository.png" width="1200">
-
-<br>
-
-// PostController.java <br><br>
-(1) doPost( ) - 게시글 저장 및 이미지 업로드
-```
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=UTF-8");
-```
-<br>
-
-(2) 세션 확인 (로그인한 사용자만 접근 가능)
-```
-HttpSession session = request.getSession(false);
-if (session == null || session.getAttribute("idkey") == null || session.getAttribute("userFid") == null) {
-    response.sendRedirect(request.getContextPath() + "/login");
-    return;
-}
-```
-<br>
-
-(3) 입력값(폼 데이터) 가져오기
-```
-int uid = (int) session.getAttribute("uidkey");
-int fid = (int) session.getAttribute("userFid");
-
-String title = request.getParameter("title");
-String description = request.getParameter("description");
-String startDate = request.getParameter("start_date");
-String endDate = request.getParameter("end_date");
-String location = request.getParameter("location");
-```
-
-<br>
-
-(4) 파일 업로드 처리 및 이미지 저장
-```
-String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
-File uploadDir = new File(uploadPath);
-if (!uploadDir.exists()) {
-    uploadDir.mkdirs(); // 폴더가 없으면 생성
-}
-
-
-String imgsrc = null;
-Part filePart = request.getPart("imgsrc"); // `imgsrc` input name 가져오기
-if (filePart != null && filePart.getSize() > 0) {
-    String fileName = UUID.randomUUID().toString() + "_" + filePart.getSubmittedFileName();
-    imgsrc = "uploads/" + fileName; // DB에 저장할 상대 경로
-
-    // 파일 저장
-    Path filePath = Path.of(uploadPath, fileName);
-    Files.copy(filePart.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-}
-```
-
-<br>
-
-(5) DB에 게시글 저장
-```
-boolean isInserted = postRepository.insertPost(title, description, startDate, endDate, location, imgsrc, fid, uid);
-```
-
-<br>
-
-(6) 성공 여부에 따라 페이지 이동
-```
-if (isInserted) {
-    response.sendRedirect(request.getContextPath() + "/post?status=success");
-} else {
-    response.sendRedirect(request.getContextPath() + "/post?status=failure");
-}
-```
-
-<br>
-
-### 🟡 마이페이지 조회
-
-(1) doGet( ) - 마이페이지 정보 조회 및 화면 표시
-```
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    try {
-        HttpSession session = request.getSession(false); // 세션 가져오기
-```
-<br>
-
-(2) 로그인 확인 (세션 체크)
-```
-// 세션이 없거나 userId가 설정되지 않은 경우 로그인 페이지로 리디렉트
-if (session == null || session.getAttribute("idkey") == null) {
-    response.sendRedirect(request.getContextPath() + "login"); // 로그인 페이지로 이동
-    return;
-}
-```
-<br>
-
-(3) 현재 로그인한 사용자 정보 가져오기
-```
-int userId = (int) request.getSession().getAttribute("uidkey");
-int fid = (int) request.getSession().getAttribute("userFid");
-```
-<br>
-
-(4) DB에서 필요한 데이터 조회
-```
-// 현재 로그인한 사용자 정보 가져오기
-User userInfo = userRepository.getUserById(userId);
-
-// 사용자가 작성한 게시글 가져오기
-List<Post> myPosts = postRepository.getPostsByUserId(userId);
-
-// 사용자 가족 정보 가져오기
-Family family = familyRepository.getFamilyById(fid);
-
-// 같은 가족 그룹(fId)에 속하는 사용자 목록 조회
-List<User> familyMembers = userRepository.getUsersByFamilyId(fid);
-```
-<br>
-
-(5) 조회한 데이터를 JSP에 넘겨주기
-```
-request.setAttribute("userInfo", userInfo);
-request.setAttribute("myPosts", myPosts);
-request.setAttribute("family", family);
-request.setAttribute("familyMembers", familyMembers);
-
-request.getRequestDispatcher("/views/jsp/mypage.jsp").forward(request, response);
-```
 
 <br>
 
 
-## 🚑 Trouble Shooting
+## ◈ Trouble Shooting
 ### ▸ include UTF-8 깨짐 현상 
 ```
 <%@ page language="java" contentType="text/html; charset=UTF-8"
